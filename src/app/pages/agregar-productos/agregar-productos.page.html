@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<ion-content>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add-circle" (click)="presentModal()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-card *ngFor="let p of productsList">
+    <ion-card-title>{{p.productName}}</ion-card-title>
+    <ion-card-content>
+      <img src="{{p.productImg}}" >
+      <div>
+
+        <ion-card-subtitle>$ {{p.price}}</ion-card-subtitle>
+        <ion-card-subtitle>stock: {{p.stock}}</ion-card-subtitle>
+      </div>
+      <ion-buttons class="buttons">
+        <ion-button fill="clear"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
+        <ion-button fill="clear"><ion-icon class="icon" color="primary" name="create-sharp"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-card-content>
+  
+  </ion-card>
+</ion-content>

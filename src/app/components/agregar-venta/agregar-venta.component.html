@@ -1,0 +1,45 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+      <div class="titulos">
+        <ion-buttons>
+          <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+        </ion-buttons>
+          <p>Ingrese una nueva venta</p>
+          
+      </div>
+     
+  </div>
+  <div class="contenido">
+      
+    <div class="formulario">
+      <ion-item class="input">
+        <ion-label position="floating">Concepto</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Monto</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label>Modo de pago</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">Efectivo</ion-select-option>
+          <ion-select-option value="m">Debito</ion-select-option>
+          <ion-select-option value="d">Credito</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+      
+     
+  </div>
+
+ 
+</ion-content>
+
+
+
+
+
+

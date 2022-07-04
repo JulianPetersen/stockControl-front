@@ -1,0 +1,25 @@
+ion-content{
+    ion-card{
+        ion-card-title{
+            text-align: center;
+        }
+        ion-card-content{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            img{
+                width: 100px;
+            }
+            ion-card-subtitle{
+                font-size: 20px;
+            }
+        }
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+    }
+    .icon{
+        font-size: 30px;
+    }
+}

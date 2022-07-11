@@ -5,11 +5,17 @@ import { AuthService } from 'src/app/services/auth.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class LoginPage implements OnInit {
+
+  constructor(public global:GlobalService, public auth:AuthService, public router:Router) { }
+
+  ngOnInit() {
+  }
+
 
   usuario:User = {
     username:"",
@@ -17,18 +23,11 @@ export class RegisterPage implements OnInit {
     password:"",
     roles:""
   };
-  
-  constructor(public auth:AuthService,
-              public global:GlobalService,
-              public router:Router) { }
 
-  ngOnInit() {
-  }
 
-  registerUser(){
- 
+  login(){
     if(this.validateInputs()){
-      this.auth.register(this.usuario)
+      this.auth.login(this.usuario)
       .subscribe((res:loginResponse) => {
         console.log(res)
         localStorage.setItem('token', res.token)
@@ -41,12 +40,14 @@ export class RegisterPage implements OnInit {
    
   }
 
+
   validateInputs(){
-    if(this.usuario.username == ""){
-      this.global.presentAlert('Error al intentar registrarse', "nombre de usuario obligatorio")
-      return false
-    }else if(this.usuario.email ==""){
-      this.global.presentAlert('Error al intentar registrarse', "campo email es obligatorio")
+    // if(this.usuario.username == ""){
+    //   this.global.presentAlert('Error al intentar registrarse', "nombre de usuario obligatorio")
+    //   return false
+    // }
+    if(this.usuario.email ==""){
+      this.global.presentAlert('Error al intentar loguearse', "campo email es obligatorio")
       return false
     // }else if(this.global.validateFormatEmail){
     //   this.global.presentAlert('error al intentar registrarse', 'el formato de Email es incorrecto')
@@ -57,4 +58,5 @@ export class RegisterPage implements OnInit {
     }
     return true;
   }
+
 }

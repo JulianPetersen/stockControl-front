@@ -4,15 +4,11 @@
       <img src="/assets/logo.png" alt="">
     </div>
     <div class="title">
-      <p>Register</p>
+      <p>Login</p>
     </div>
   </ion-toolbar>
 
   <div class="formRegister">
-    <ion-item>
-      <ion-input  placeholder="Nombre de Usuario" [(ngModel)]="usuario.username"></ion-input>
-      <ion-icon name="person" item-start class="text-primary"></ion-icon>
-    </ion-item>
     <ion-item>
       <ion-input placeholder="Mail" [(ngModel)]="usuario.email"></ion-input>
       <ion-icon name="mail" item-start class="text-primary"></ion-icon>
@@ -21,9 +17,9 @@
       <ion-input placeholder="Contraseña" type="password" [(ngModel)]="usuario.password"></ion-input>
       <ion-icon name="key"></ion-icon>
     </ion-item>
-    <ion-button (click)="registerUser()" >Registrar</ion-button>
+    <ion-button (click)="login()" >Ingresar</ion-button>
   </div>
 
-  <p class="haveAccount">¿ya tenes una cuenta? <span [routerLink]="['/login']">Logueate.</span></p>
+  <p class="haveAccount">¿No tenes una cuenta? <span [routerLink]="['/register']">Registrate.</span></p>
 </ion-content>
 

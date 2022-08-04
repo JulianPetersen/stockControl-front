@@ -8,6 +8,10 @@ import { AgregarProductoModalComponent } from './agregar-producto-modal/agregar-
 
 import { FormsModule } from '@angular/forms';
 import { AgregarVentaComponent } from './agregar-venta/agregar-venta.component';
+import { AddCategoryProductComponent } from './add-category-product/add-category-product.component';
+import { ProducteditComponent } from './productedit/productedit.component';
+import { SelectProductComponent } from './select-product/select-product.component';
+import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.component';
 
 
 
@@ -16,8 +20,11 @@ import { AgregarVentaComponent } from './agregar-venta/agregar-venta.component';
     MenuComponent,
     HeaderComponent,
     AgregarProductoModalComponent,
-    AgregarVentaComponent
-
+    AgregarVentaComponent,
+    AddCategoryProductComponent,
+    ProducteditComponent,
+    SelectProductComponent,
+    AgregarGastosComponent
   ],
   imports: [
     CommonModule,
@@ -29,9 +36,11 @@ import { AgregarVentaComponent } from './agregar-venta/agregar-venta.component';
     MenuComponent,
     HeaderComponent,
     AgregarProductoModalComponent, 
-    AgregarVentaComponent
-
-
+    AgregarVentaComponent,
+    AddCategoryProductComponent,
+    ProducteditComponent,
+    SelectProductComponent,
+    AgregarGastosComponent
   ]
 })
 export class ComponentModuleModule { }

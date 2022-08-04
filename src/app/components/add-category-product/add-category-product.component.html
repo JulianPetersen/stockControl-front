@@ -1,0 +1,33 @@
+
+<ion-content>
+  <div class="cabecera">
+    <div class="titulos">
+      <ion-buttons>
+        <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+      </ion-buttons>
+        <p>Categoria</p>
+    </div>
+  </div>
+  <div class="agregar">
+    <ion-item class="input">
+       <ion-input placeholder="Categoria" [(ngModel)]="newCategorie.name"></ion-input>
+    </ion-item>
+    <ion-button (click)="createNewCategory()">Agregar</ion-button>
+</div>
+  <div class="contenedor">
+    <ion-radio-group [(ngModel)]="categorieSelect">
+      <ion-item class="input" *ngFor="let c of categories">
+        <ion-label>{{c.name}}</ion-label>
+        <ion-radio value="{{c.name}}" ></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+
+  
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="categorieSelected()">Seleccionar</ion-button>
+</ion-footer>
+
+ 

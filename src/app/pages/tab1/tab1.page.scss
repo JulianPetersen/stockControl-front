@@ -39,6 +39,7 @@ ion-content{
     .contenido{
         position: absolute;
         width: 100%;
+        height: auto;
         background-color: rgb(228, 228, 228);
         border-top-left-radius: 60px;
         border-top-right-radius: 60px;
@@ -182,4 +183,5 @@ ion-footer{
     justify-content: center;
     align-items: center;
     border: none;
+    background: rgb(228, 228, 228);
 }

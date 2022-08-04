@@ -1,0 +1,45 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+      <div class="titulos">
+        <ion-buttons>
+          <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+        </ion-buttons>
+          <p>Ingrese una nueva venta</p>
+          
+      </div>
+     
+  </div>
+  <div class="contenido">
+      
+    <div class="formulario">
+      <ion-item class="input">
+        <ion-label position="fixed">Concepto</ion-label>
+        <ion-input [(ngModel)]="newGasto.concepto"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="fixed">Monto $</ion-label>
+        <ion-input [(ngModel)]="newGasto.monto"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label>Modo de pago</ion-label>
+        <ion-select [(ngModel)]="newGasto.metodoPago" placeholder="Select One" >
+          <ion-select-option value="Efectivo">Efectivo</ion-select-option>
+          <ion-select-option value="Debito">Debito</ion-select-option>
+          <ion-select-option value="Credito">Credito</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="AgregarGasto()">Agregar Gasto</ion-button>
+</ion-footer>
+
+
+
+
+

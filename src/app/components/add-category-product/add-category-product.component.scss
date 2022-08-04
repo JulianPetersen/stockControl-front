@@ -1,0 +1,80 @@
+ion-content{
+    
+    .cabecera{
+        width: 100%;
+        height: 70px;
+        background-color: #298295;
+
+        .titulos{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            p{
+                font-family: 'Poppins', sans-serif;
+                color: white;
+                text-align: center;
+                margin:0;
+            }
+            ion-buttons{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                margin-right: 20px;
+              
+                color: white;
+            }
+        }
+        
+        
+    }
+
+    .contenedor{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        ion-radio-group{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        ion-radio-group{
+            width: 100%;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .input{
+            width: 80%;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            --background: rgb(228, 228, 228);
+        }
+
+        
+    }
+    .agregar{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .input{
+            width: 80%;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            --background: rgb(228, 228, 228);
+        }
+    }
+    
+}
+
+ion-footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

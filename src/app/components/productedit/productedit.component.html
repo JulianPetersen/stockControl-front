@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+      <div class="titulos">
+        <ion-buttons>
+          <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+        </ion-buttons>
+          <p>Agregar un Producto</p>
+    </div>
+     
+  </div>
+  <div class="contenido">
+      
+    <div class="formulario">
+      <ion-item class="input">
+        <ion-label position="floating">Nombre de Producto</ion-label>
+        <ion-input [(ngModel)]="this.nombre" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label (click)="agregarCategorie()" >{{this.categoria}}</ion-label>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating" >Monto</ion-label>
+        <ion-input type="text" [(ngModel)]="this.monto"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label >Stock</ion-label>
+        <ion-input type="number" position="floating" [(ngModel)]="this.stock"></ion-input>
+      </ion-item>
+      <div class="imageSelected">
+        <img [src]="imgUrl" alt="">
+      </div>
+    </div>
+  </div>
+
+ 
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="editProduct()" >Editar</ion-button>
+</ion-footer>
+
+
+
+
+
+

@@ -1,9 +1,48 @@
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+      <div class="titulos">
+        <ion-buttons>
+          <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+        </ion-buttons>
+          <p>Agregar un Producto</p>
+    </div>
+     
+  </div>
+  <div class="contenido">
+      
+    <div class="formulario">
+      <ion-item class="input">
+        <ion-label position="floating">Nombre de Producto</ion-label>
+        <ion-input [(ngModel)]="this.newProduct.name" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label (click)="agregarCategorie()" >{{categorieSelected}}</ion-label>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating" >Monto</ion-label>
+        <ion-input type="text" [(ngModel)]="this.newProduct.price"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label >Stock</ion-label>
+        <ion-input type="number" position="floating" [(ngModel)]="this.newProduct.stock"></ion-input>
+      </ion-item>
+      <ion-button (click)="selectImage()">Agregar una imagen</ion-button>
+      
+      <div class="imageSelected">
+        <img [src]="imagenSelected" alt="">
+      </div>
+    </div>
+  </div>
 
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Agrega un producto</ion-title>
-  </ion-toolbar>
-  <ion-buttons>
-    <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
-  </ion-buttons>
-</ion-header>
+ 
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="addProduct()">Agregar</ion-button>
+</ion-footer>
+
+
+
+
+
+

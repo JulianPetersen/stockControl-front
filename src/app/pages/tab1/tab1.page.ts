@@ -1,175 +1,315 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { IonDatetime, ModalController } from '@ionic/angular';
+import { AgregarGastosComponent } from 'src/app/components/agregar-gastos/agregar-gastos.component';
 import { AgregarVentaComponent } from 'src/app/components/agregar-venta/agregar-venta.component';
+import { responseVenta, Ventas } from 'src/app/models/ventas';
+import { Gastos } from 'src/app/models/gastos';
 import { CajaService } from 'src/app/services/caja.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-
   //Distintas pantallas del home
-  diario:boolean = false;
-  semanal:boolean = true;
-  mensual:boolean = true;
-  anual:boolean = true;
-
+  diario: boolean = false;
+  semanal: boolean = true;
+  mensual: boolean = true;
+  anual: boolean = true;
 
   //Formateo de la fecha
-  day:Date = new Date;
-  month:Date = new Date;
-  formatedYear:string;
-  formatedMoth:string;
-  formatedDay:number;
-  SelecteDate;
-
+  day: Date = new Date();
+  month: Date = new Date();
+  formatedYear: string;
+  formatedMoth: string;
+  formatedDay: number;
   //variable para seleccionar el año en el que estamos
   anioActual;
-
   //variable para cambiar color de fondo del ion card
-  selectedDay:boolean = false;
+  selectedDay: boolean = false;
 
+  listVentas: responseVenta[] = [];
+  listgastos: Gastos[] = [];
+  fechasVenta: any[] = [];
+  today: Date = new Date();
+  fechaSeleccionada;
+  fechaSeleccionadaGastos;
 
-constructor(public global:GlobalService,
-            public modalController: ModalController,
-            public caja:CajaService) {}
+  totalIngresos: number;
+  totalGastos: number;
 
-  
-  ventas= this.caja.ventas;
-  gastos = this.caja.gastos;
+  constructor(
+    public global: GlobalService,
+    public modalController: ModalController,
+    public caja: CajaService
+  ) {}
 
-  ngOnInit(){
-    let mes = this.month.getMonth()
-    this.obtenerMesFormateado(mes); 
+  ngOnInit() {
+    let mes = this.month.getMonth();
+    this.obtenerMesFormateado(mes);
     this.obtenerDia();
     this.obtenerAño();
-    
+    this.getVentasByDate(this.fechaSeleccionada);
+    this.getGastosByDate(this.fechaSeleccionadaGastos);
   }
-  
-//#region manipulacion de las pantallas de home
-  mostrarContenidoDiario(){
+
+  //#region manipulacion de las pantallas de home
+  mostrarContenidoDiario() {
     this.diario = false;
     this.semanal = true;
     this.mensual = true;
     this.anual = true;
-    
   }
-  
-  mostrarContenidoSemanal(){
+
+  mostrarContenidoSemanal() {
     this.diario = true;
     this.semanal = false;
     this.mensual = true;
     this.anual = true;
   }
 
-  mostrarContenidoMensual(){
+  mostrarContenidoMensual() {
     this.diario = true;
     this.semanal = true;
     this.mensual = false;
     this.anual = true;
   }
 
-  mostrarContenidoAnual(){
+  mostrarContenidoAnual() {
     this.diario = true;
     this.semanal = true;
     this.mensual = true;
     this.anual = false;
   }
-//#endregion
+  //#endregion
 
-//#region Formateo de la fecha
-obtenerDia(){
-  this.formatedDay = this.day.getDate();
-}
+  //#region Formateo de la fecha
+  obtenerDia() {
+    this.formatedDay = this.day.getDate();
+  }
 
-obtenerAño(){
-  this.anioActual = this.day.getFullYear();
-}
+  obtenerAño() {
+    this.anioActual = this.day.getFullYear();
+  }
 
-  formatDateSelected(data){
+  formatDateSelectedByMoment(data) {
     let fecha = data.split('-');
     this.formatedYear = fecha[0];
     this.formatedMoth = fecha[1].split('0');
-    let mes = this.formatedMoth[1]
-    this.obtenerMesFormateado(parseInt(mes)-1)
-    let dia = fecha[2].split('T')
+    let mes = this.formatedMoth[1];
+    this.obtenerMesFormateado(parseInt(mes) - 1);
+    let dia = fecha[2].split('T');
     this.formatedDay = dia[0];
-
   }
 
-  obtenerMesFormateado(obtainedMonth){
-    const mes = obtainedMonth
-    switch(mes){
-      case  0:
-        this.formatedMoth = 'Enero'
-        console.log(this.formatedMoth);
-      break
-      case 1: 
-      this.formatedMoth = 'Febrero'
-      console.log(this.formatedMoth);
-      break
-      case 2: 
-      this.formatedMoth = 'Marzo'
-      console.log(this.formatedMoth);
-      break
-      case 3: 
-      this.formatedMoth = 'Abril'
-      console.log(this.formatedMoth);
-      break
+  obtenerMesFormateado(obtainedMonth) {
+    const mes = obtainedMonth;
+    switch (mes) {
+      case 0:
+        this.formatedMoth = 'Enero';
+        break;
+      case 1:
+        this.formatedMoth = 'Febrero';
+        break;
+      case 2:
+        this.formatedMoth = 'Marzo';
+        break;
+      case 3:
+        this.formatedMoth = 'Abril';
+        break;
       case 4:
-        this.formatedMoth = 'Mayo'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Mayo';
+        break;
       case 5:
-        this.formatedMoth = 'Junio'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Junio';
+        break;
       case 6:
-        this.formatedMoth = 'Julio'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Julio';
+        break;
       case 7:
-        this.formatedMoth = 'Agosto'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Agosto';
+        break;
       case 8:
-        this.formatedMoth = 'Septiembre'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Septiembre';
+        break;
       case 9:
-        this.formatedMoth = 'Octubre'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Octubre';
+        break;
       case 10:
-        this.formatedMoth = 'Noviembre'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Noviembre';
+
+        break;
       case 11:
-        this.formatedMoth = 'Diciembre'
-        console.log(this.formatedMoth);
-      break
+        this.formatedMoth = 'Diciembre';
 
+        break;
       default:
-        console.log('no se encontro el mes')
-
     }
   }
-//#endregion
+  //#endregion
 
+  mostrarInfoDia() {
+    if (this.selectedDay == false) {
+      this.selectedDay = true;
+    } else if (this.selectedDay == true) {
+      this.selectedDay = false;
+    }
+  }
 
-mostrarInfoDia(){
-  if(this.selectedDay == false){
-    this.selectedDay = true;
-  }else if(this.selectedDay == true){
-    this.selectedDay = false;
+  getVentasByDate(fechaSeleccionada) {
+    let day = new Date();
+    let dia = day.getDate().toString();
+    let month = (day.getMonth() + 1).toString();
+    let year = day.getFullYear();
+    if (dia.length == 1) {
+      dia = `0${dia}`;
+    }
+    if (month.length == 1) {
+      month = `0${month}`;
+    }
+    this.fechaSeleccionada = `${dia}-${month}-${year}`;
+
+    this.formatearFechaObtainedVentas(fechaSeleccionada);
+    this.caja
+      .obtenerVentaByFecha(this.fechaSeleccionada)
+      .subscribe((res: responseVenta[]) => {
+        console.log(this.fechaSeleccionada);
+        this.listVentas = res;
+        this.totalIngresos = this.listVentas
+          .map((item) => item.monto)
+          .reduce((prev, curr) => prev + curr, 0);
+      });
+  }
+
+  getGastosByDate(fechaSeleccionada) {
+    let day = new Date();
+    let dia = day.getDate().toString();
+    let month = (day.getMonth() + 1).toString();
+    let year = day.getFullYear();
+    if (dia.length == 1) {
+      dia = `0${dia}`;
+    }
+    if (month.length == 1) {
+      month = `0${month}`;
+    }
+    this.fechaSeleccionadaGastos = `${dia}-${month}-${year}`;
+    this.formatearFechaObtainedGastos(fechaSeleccionada);
+
+    this.caja
+      .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+      .subscribe((res: Gastos[]) => {
+        this.listgastos = res;
+        this.totalGastos = this.listgastos
+          .map((item) => item.monto)
+          .reduce((prev, curr) => prev + curr, 0);
+      });
+  }
+
+  formatearFechaObtainedVentas(fechaSeleccionada) {
+    if (fechaSeleccionada != undefined) {
+      let fecha = fechaSeleccionada.split('-');
+      let year = fecha[0];
+      let month = fecha[1].split();
+      let obtainedDia = fecha[2].split('T');
+      let dia = obtainedDia[0];
+      this.fechaSeleccionada = `${dia}-${month}-${year}`;
+    }
+  }
+
+  formatearFechaObtainedGastos(fechaSeleccionada) {
+    if (fechaSeleccionada != undefined) {
+      let fecha = fechaSeleccionada.split('-');
+      let year = fecha[0];
+      let month = fecha[1].split();
+      let obtainedDia = fecha[2].split('T');
+      let dia = obtainedDia[0];
+      this.fechaSeleccionadaGastos = `${dia}-${month}-${year}`;
+    }
+  }
+
+  async nuevaVenta() {
+    let modal = await this.modalController.create({
+      component: AgregarVentaComponent,
+    });
+    modal.onDidDismiss().then((data) => {
+      this.caja
+        .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+        .subscribe((res: Gastos[]) => {
+          this.listgastos = res;
+          this.totalGastos = this.listgastos
+            .map((item) => item.monto)
+            .reduce((prev, curr) => prev + curr, 0);
+        });
+      this.caja
+        .obtenerVentaByFecha(this.fechaSeleccionada)
+        .subscribe((res: responseVenta[]) => {
+          console.log(this.fechaSeleccionada);
+          this.listVentas = res;
+          this.totalIngresos = this.listVentas
+            .map((item) => item.monto)
+            .reduce((prev, curr) => prev + curr, 0);
+        });
+    });
+    modal.present();
+  }
+
+  async nuevoGasto() {
+    let modal = await this.modalController.create({
+      component: AgregarGastosComponent,
+    });
+    modal.onDidDismiss().then((data) => {
+      this.caja
+        .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+        .subscribe((res: Gastos[]) => {
+          this.listgastos = res;
+          this.totalGastos = this.listgastos
+            .map((item) => item.monto)
+            .reduce((prev, curr) => prev + curr, 0);
+        });
+      this.caja
+        .obtenerVentaByFecha(this.fechaSeleccionada)
+        .subscribe((res: responseVenta[]) => {
+          console.log(this.fechaSeleccionada);
+          this.listVentas = res;
+          this.totalIngresos = this.listVentas
+            .map((item) => item.monto)
+            .reduce((prev, curr) => prev + curr, 0);
+        });
+    });
+    modal.present();
+  }
+
+  deleteVenta(idVenta){
+    console.log(idVenta)
+    this.caja.deleteVenta(idVenta)
+      .subscribe(res => {
+        this.caja
+        .obtenerVentaByFecha(this.fechaSeleccionada)
+        .subscribe((res: responseVenta[]) => {
+          console.log(this.fechaSeleccionada);
+          this.listVentas = res;
+          this.totalIngresos = this.listVentas
+            .map((item) => item.monto)
+            .reduce((prev, curr) => prev + curr, 0);
+        });
+        
+      })
+  }
+
+  deleteGasto(idGasto){
+    this.caja.deleteGasto(idGasto)
+      .subscribe(res => {
+        this.caja
+        .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+        .subscribe((res: Gastos[]) => {
+          this.listgastos = res;
+          this.totalGastos = this.listgastos
+            .map((item) => item.monto)
+            .reduce((prev, curr) => prev + curr, 0);
+        });
+      })
+    
   }
 }
-
-nuevaVenta(){
-  this.global.presentModal(AgregarVentaComponent,'','')
-}
-}
-

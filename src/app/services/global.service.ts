@@ -17,10 +17,14 @@ async presentModal(component:any, data:any, clase:string) {
     const modal = await this.modalController.create({
       component: component,
       cssClass: clase,
-      componentProps:data
+      componentProps:data,
+
     });
     return await modal.present();
   }
+
+
+ 
 
 dismissModal() {
     this.modalController.dismiss({

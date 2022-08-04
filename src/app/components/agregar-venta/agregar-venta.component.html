@@ -14,30 +14,33 @@
   <div class="contenido">
       
     <div class="formulario">
+      <ion-button class="btnAgregarProducto" (click)="SelectProduct()">
+        <ion-icon name="storefront"></ion-icon>
+        Seleccionar Un producto
+      </ion-button>
       <ion-item class="input">
-        <ion-label position="floating">Concepto</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item class="input">
-        <ion-label position="floating">Monto</ion-label>
-        <ion-input></ion-input>
+        <ion-label position="fixed">Monto $</ion-label>
+        <ion-input [(ngModel)]="newVenta.monto">{{productSelected.price}}</ion-input>
       </ion-item>
       <ion-item class="input">
         <ion-label>Modo de pago</ion-label>
-        <ion-select placeholder="Select One">
-          <ion-select-option value="f">Efectivo</ion-select-option>
-          <ion-select-option value="m">Debito</ion-select-option>
-          <ion-select-option value="d">Credito</ion-select-option>
+        <ion-select [(ngModel)]="newVenta.metodoPago" placeholder="Select One" >
+          <ion-select-option value="Efectivo">Efectivo</ion-select-option>
+          <ion-select-option value="Debito">Debito</ion-select-option>
+          <ion-select-option value="Credito">Credito</ion-select-option>
         </ion-select>
       </ion-item>
     </div>
       
-     
+    <div class="imgProduct">
+      <img [src]="productSelected.imgUrl" alt="">
+   </div>
   </div>
-
- 
 </ion-content>
 
+<ion-footer>
+  <ion-button (click)="agregarVenta()">Agregar Venta</ion-button>
+</ion-footer>
 
 
 

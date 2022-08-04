@@ -1,6 +1,18 @@
 export interface Products {
-    productName:string;
+    _id:string;
+    name:string;
+    category:string;
     price:number;
-    productImg:string;
-    stock:number;
+    imgUrl?:number;
+    stock:number
+}
+
+
+export interface PostProduct {
+
+    name:string;
+    category:string;
+    price:number;
+    image?:File;
+    stock:number
 }

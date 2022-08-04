@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccionar Producto</ion-title>
+  </ion-toolbar>
+  <ion-buttons>
+    <ion-button (click)="closeModal()">X</ion-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let prod of listPorducts" (click)="ProductSelected(prod)">
+    <ion-card-title></ion-card-title>
+    <ion-card-content>
+      <div class="image">
+        <img src="{{prod.imgUrl}}" >
+      </div>
+      <div>
+
+        <ion-card-subtitle>$ {{prod.price}}</ion-card-subtitle>
+        <ion-card-subtitle>stock: {{prod.stock}}</ion-card-subtitle>
+      </div>
+      <ion-buttons class="buttons">
+        <ion-button fill="clear" (click)="deleteproduct(prod._id)"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
+        <ion-button fill="clear" (click)="editModal(prod._id, prod.name, prod.category,prod.price, prod.stock, prod.imgUrl)"><ion-icon class="icon" color="primary" name="create-sharp"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-card-content>
+  
+  </ion-card>

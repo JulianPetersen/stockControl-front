@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GlobalService } from './global.service';
 import { Products } from '../models/products';
 
 @Injectable({
@@ -7,10 +8,46 @@ import { Products } from '../models/products';
 })
 export class ProductosService {
 
-  constructor() { }
+  constructor(public global:GlobalService, public http:HttpClient) { }
 
-  productArray:Products[]=[
-    {productName:'Shampoo head & shoulders', price:1000, productImg:'/assets/shoulder.jpg', stock:50},
-    {productName:'Shampoo Dove', price:1000, productImg:'/assets/dove.png', stock:35}
-  ]
+
+  getProducts(){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    const fd = new FormData();
+    return this.http.get<Products[]>(`${this.global.URL}/products`, {headers:headers})
+  }
+
+
+  postProduct(name:string, category:string, price, stock, image:File){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    const fd = new FormData();
+
+    fd.append('name', name),
+    fd.append('category', category)
+    fd.append('price', price)
+    fd.append('stock', stock)
+    fd.append('image', image)
+    return this.http.post(`${this.global.URL}/products`,fd,{headers:headers})
+  }
+
+
+  deleteProduct(productId){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    return this.http.delete(`${this.global.URL}/products/${productId}`, {headers:headers})
+  }
+
+
+  editProduct(productId, product){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+ 
+    return this.http.put(`${this.global.URL}/products/${productId}`,product,{headers:headers})
+  }
 }

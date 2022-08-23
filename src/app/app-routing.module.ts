@@ -25,6 +25,16 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'resumen-mensual',
+    loadChildren: () => import('./pages/resumen-mensual/resumen-mensual.module').then( m => m.ResumenMensualPageModule)
+  },
+  {
+    path: 'resumen-anual',
+    loadChildren: () => import('./pages/resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule)
+  },
+  
+ 
 ];
 @NgModule({
   imports: [

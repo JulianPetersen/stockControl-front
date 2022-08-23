@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonDatetime, ModalController } from '@ionic/angular';
+import { IonDatetime, LoadingController, ModalController } from '@ionic/angular';
 import { AgregarGastosComponent } from 'src/app/components/agregar-gastos/agregar-gastos.component';
 import { AgregarVentaComponent } from 'src/app/components/agregar-venta/agregar-venta.component';
 import { responseVenta, Ventas } from 'src/app/models/ventas';
 import { Gastos } from 'src/app/models/gastos';
 import { CajaService } from 'src/app/services/caja.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -13,12 +14,6 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-  //Distintas pantallas del home
-  diario: boolean = false;
-  semanal: boolean = true;
-  mensual: boolean = true;
-  anual: boolean = true;
-
   //Formateo de la fecha
   day: Date = new Date();
   month: Date = new Date();
@@ -43,7 +38,9 @@ export class Tab1Page {
   constructor(
     public global: GlobalService,
     public modalController: ModalController,
-    public caja: CajaService
+    public caja: CajaService,
+    public router:Router,
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {
@@ -57,32 +54,16 @@ export class Tab1Page {
 
   //#region manipulacion de las pantallas de home
   mostrarContenidoDiario() {
-    this.diario = false;
-    this.semanal = true;
-    this.mensual = true;
-    this.anual = true;
-  }
-
-  mostrarContenidoSemanal() {
-    this.diario = true;
-    this.semanal = false;
-    this.mensual = true;
-    this.anual = true;
+   this.router.navigateByUrl('/home')
   }
 
   mostrarContenidoMensual() {
-    this.diario = true;
-    this.semanal = true;
-    this.mensual = false;
-    this.anual = true;
+    this.router.navigateByUrl('/resumen-mensual')
   }
 
   mostrarContenidoAnual() {
-    this.diario = true;
-    this.semanal = true;
-    this.mensual = true;
-    this.anual = false;
-  }
+    this.router.navigateByUrl('/resumen-anual')
+   }
   //#endregion
 
   //#region Formateo de la fecha
@@ -94,7 +75,9 @@ export class Tab1Page {
     this.anioActual = this.day.getFullYear();
   }
 
+
   formatDateSelectedByMoment(data) {
+   
     let fecha = data.split('-');
     this.formatedYear = fecha[0];
     this.formatedMoth = fecha[1].split('0');
@@ -170,12 +153,15 @@ export class Tab1Page {
       month = `0${month}`;
     }
     this.fechaSeleccionada = `${dia}-${month}-${year}`;
-
+    
     this.formatearFechaObtainedVentas(fechaSeleccionada);
+    this.global.showLoading('cargando')
     this.caja
       .obtenerVentaByFecha(this.fechaSeleccionada)
       .subscribe((res: responseVenta[]) => {
-        console.log(this.fechaSeleccionada);
+        setTimeout(() => {
+          this.loadingCtrl.dismiss();
+        }, 500);
         this.listVentas = res;
         this.totalIngresos = this.listVentas
           .map((item) => item.monto)
@@ -196,7 +182,6 @@ export class Tab1Page {
     }
     this.fechaSeleccionadaGastos = `${dia}-${month}-${year}`;
     this.formatearFechaObtainedGastos(fechaSeleccionada);
-
     this.caja
       .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
       .subscribe((res: Gastos[]) => {

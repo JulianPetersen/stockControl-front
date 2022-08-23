@@ -15,6 +15,7 @@ import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.componen
 
 
 
+
 @NgModule({
   declarations: [
     MenuComponent,
@@ -24,7 +25,9 @@ import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.componen
     AddCategoryProductComponent,
     ProducteditComponent,
     SelectProductComponent,
-    AgregarGastosComponent
+    AgregarGastosComponent,
+    
+   
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,9 @@ import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.componen
     AddCategoryProductComponent,
     ProducteditComponent,
     SelectProductComponent,
-    AgregarGastosComponent
+    AgregarGastosComponent,
+    
+
   ]
 })
 export class ComponentModuleModule { }

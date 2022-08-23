@@ -25,15 +25,19 @@ export class AgregarGastosComponent implements OnInit {
   }
 
 date:Date = new Date;
+
 newGasto:Gastos = {
   concepto:"",
   monto:null,
   metodoPago:"",
-  fecha:""
+  fecha:"",
+  month:"",
+  year:""
 }
 
 fechaFormateada;
-
+monthFormated
+yearFormated;
 
   cerrarModal() {
     this.global.dismissModal();
@@ -54,6 +58,8 @@ fechaFormateada;
       month = `0${month}`
     }
     this.fechaFormateada = `${dia}-${month}-${year}`
+    this.monthFormated = `${month}-${year}`
+    this.yearFormated = `${year}`
     
   }
  
@@ -62,7 +68,9 @@ fechaFormateada;
       concepto:this.newGasto.concepto,
       monto:this.newGasto.monto,
       metodoPago:this.newGasto.metodoPago,
-      fecha:this.fechaFormateada
+      fecha:this.fechaFormateada,
+      month:this.monthFormated,
+      year:this.yearFormated
     }
     if(this.validateData()){
       this.caja.agregarGasto(gasto)

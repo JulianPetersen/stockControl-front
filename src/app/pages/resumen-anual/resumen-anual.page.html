@@ -1,0 +1,54 @@
+
+<ion-content >
+  
+  <div class="cabecera">
+      <div class="titulos">
+          <p>Daiana Colorista</p>
+          <p>Dueño</p>
+      </div>
+      <div class="segment">
+          <ion-button (click)="mostrarContenidoDiario()">Diario</ion-button>
+          <ion-button (click)="mostrarContenidoMensual()">Mensual</ion-button>
+          <ion-button (click)="mostrarContenidoAnual()">Anual</ion-button>
+      </div>
+  </div>
+  <div class="contenido">
+      <div class="contenidoDiario"> 
+          <div class="calendario">
+           <ion-button  fill="clear" id="open-date-input-1">
+            <ion-icon icon="calendar"></ion-icon>
+          </ion-button>
+          <ion-popover  trigger="open-date-input-1" show-backdrop="false">
+            <ng-template>
+              <ion-datetime
+                #popoverDatetime2
+                presentation="date"
+                (ionChange)="formatDateSelectedByMoment(popoverDatetime2.value)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+           <p>Año: {{formatedYear}}</p>
+         </div>
+         <div class="balance">
+           <ion-card>
+               <div class="total">
+                 <p>Resumen del Año</p>
+                 <p>{{totalVentas - totalGastos }}</p>
+               </div>
+               <div class="resumen">
+                 <p class="ventas">Total ventas</p>
+                 <p>${{totalVentas}}</p>
+                 <p class="gastos">Total gastos</p>
+                 <p>${{totalGastos}}</p>
+               </div>
+           </ion-card>
+         </div>
+         
+           
+        
+      </div>
+     
+  </div>
+</ion-content>
+
+

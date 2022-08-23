@@ -1,0 +1,76 @@
+
+<ion-content >
+  
+  <div class="cabecera">
+      <div class="titulos">
+          <p>Daiana Colorista</p>
+          <p>Dueño</p>
+      </div>
+      <div class="segment">
+          <ion-button (click)="mostrarContenidoDiario()">Diario</ion-button>
+          <ion-button (click)="mostrarContenidoMensual()">Mensual</ion-button>
+          <ion-button (click)="mostrarContenidoAnual()">Anual</ion-button>
+      </div>
+  </div>
+  <div class="contenido">
+      <div class="contenidoDiario"> 
+          <div class="calendario">
+           <ion-button  fill="clear" id="open-date-input-1">
+            <ion-icon icon="calendar"></ion-icon>
+          </ion-button>
+          <ion-popover  trigger="open-date-input-1" show-backdrop="false">
+            <ng-template>
+              <ion-datetime
+                #popoverDatetime2
+                presentation="date"
+                (ionChange)="formatDateSelectedByMoment(popoverDatetime2.value)"
+                (ionChange)="selectedMonth = obtenerVentasPorMes(popoverDatetime2.value)"
+                (ionChange)="selectedMonth = obtenerGastosPorMes(popoverDatetime2.value)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+           <p>{{formatedMoth}}</p>
+         </div>
+         <div class="balance">
+           <ion-card>
+               <div class="total">
+                 <p>Resumen del Mes</p>
+                 <p>${{this.totalIngresos - this.totalGastos}}</p>
+               </div>
+               <div class="resumen">
+                 <p class="ventas">Total ventas</p>
+                 <p>${{totalIngresos}}</p>
+                 <p class="gastos">Total gastos</p>
+                 <p>${{totalGastos}}</p>
+               </div>
+           </ion-card>
+         </div>
+         <div class="ResumenDia">
+           <ion-card>
+             <div class="dia">
+               <p>{{ formatedMoth}}</p>
+               <p> 2022</p>
+             </div>
+             <div class="totaldia">
+             </div>
+           </ion-card>
+           <div  class="Caja">
+             <ion-card  *ngFor="let venta of listVentas">
+               <p>{{venta.producto.name}}</p>
+               <p class="textoVenta">$ {{venta.monto}}</p>
+               <ion-button fill="clear"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
+             </ion-card>  
+             <ion-card  *ngFor="let gasto of listGastos">
+               <p>{{gasto.concepto}}</p>
+               <p class="textoGasto">-$ {{gasto.monto}}</p>
+               <ion-button fill="clear"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
+             </ion-card>  
+           </div>
+           
+         </div>
+      </div>
+     
+  </div>
+</ion-content>
+
+

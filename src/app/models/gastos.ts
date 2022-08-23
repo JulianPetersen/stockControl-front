@@ -4,4 +4,6 @@ export interface Gastos {
     monto:number,
     metodoPago:string,
     fecha:string,
+    month:string,
+    year:string;
 }

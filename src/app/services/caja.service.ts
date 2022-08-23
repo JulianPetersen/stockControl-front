@@ -69,4 +69,36 @@ export class CajaService {
     })
     return this.http.delete(`${this.global.URL}/gastos/${id}`, {headers:headers})
   }
+
+
+  obtenerVentaByMonth(month:string){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    return this.http.get(`${this.global.URL}/ventas/getByMonth/${month}`, {headers:headers})
+  }
+
+  obtenerGastosByMonth(month:string){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    return this.http.get(`${this.global.URL}/gastos/getByMonth/${month}`, {headers:headers})
+  }
+
+
+  getVentasByYear(year:string){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    return this.http.get(`${this.global.URL}/ventas/getByYear/${year}`, {headers:headers})
+  }
+
+  getGastosByYear(year:string){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    return this.http.get(`${this.global.URL}/gastos/getByYear/${year}`, {headers:headers})
+  }
+
+
 }

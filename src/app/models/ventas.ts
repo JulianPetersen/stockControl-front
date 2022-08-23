@@ -6,6 +6,8 @@ export interface Ventas {
     monto:number,
     metodoPago:string,
     fecha:string
+    month:string
+    year:string
 }
 
 export interface responseVenta {
@@ -14,4 +16,5 @@ export interface responseVenta {
     monto:number,
     metodoPago:string,
     fecha:string
+    year:string
 }

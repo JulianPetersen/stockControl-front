@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { AlertController } from '@ionic/angular';
 export class GlobalService {
 
   constructor(public modalController: ModalController,
-              public alert:AlertController) { }
+              public alert:AlertController,
+              private loadingCtrl: LoadingController) { }
 
   URL="http://localhost:4000/api"
 
@@ -18,7 +20,6 @@ async presentModal(component:any, data:any, clase:string) {
       component: component,
       cssClass: clase,
       componentProps:data,
-
     });
     return await modal.present();
   }
@@ -47,5 +48,13 @@ dismissModal() {
     return emailReg.test(value);
   };
 
+
+  async showLoading(message:string) {
+    const loading = await this.loadingCtrl.create({
+      message: message,
+    });
+
+    loading.present();
+  }
 }
 

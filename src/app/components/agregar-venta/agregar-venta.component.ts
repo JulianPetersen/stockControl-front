@@ -33,12 +33,16 @@ export class AgregarVentaComponent implements OnInit {
   metodoPago:string
   fecha:Date = new Date
   fechaFormateada;
+  monthFormated;
+  yearFormated;
 
   newVenta:Ventas = {
     producto:"",
     monto:null,
     metodoPago:"",
-    fecha:""
+    fecha:"",
+    month:"",
+    year:""
 
   }
   
@@ -61,6 +65,8 @@ export class AgregarVentaComponent implements OnInit {
       month = `0${month}`
     }
     this.fechaFormateada = `${dia}-${month}-${year}`
+    this.monthFormated = `${month}-${year}`
+    this.yearFormated = `${year}`
     
   }
 
@@ -70,7 +76,9 @@ export class AgregarVentaComponent implements OnInit {
       producto:this.productSelected._id,
       monto:this.productSelected.price,
       metodoPago:this.metodoPago,
-      fecha:this.fechaFormateada
+      fecha:this.fechaFormateada,
+      month:this.monthFormated,
+      year:this.yearFormated
     }
 
     if(this.validateData()){

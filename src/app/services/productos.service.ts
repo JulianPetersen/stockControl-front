@@ -50,4 +50,21 @@ export class ProductosService {
  
     return this.http.put(`${this.global.URL}/products/${productId}`,product,{headers:headers})
   }
+
+  getProductoVendido(){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+ 
+    return this.http.get(`${this.global.URL}/productosvendidos`,{headers:headers})
+  }
+
+  getProductoVendidoByYear(year:string){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+ 
+    return this.http.get(`${this.global.URL}/productosvendidos/${year}`,{headers:headers})
+  }
+  
 }

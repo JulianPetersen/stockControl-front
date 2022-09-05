@@ -161,7 +161,7 @@ export class Tab1Page {
       .subscribe((res: responseVenta[]) => {
         setTimeout(() => {
           this.loadingCtrl.dismiss();
-        }, 500);
+        }, 1000);
         this.listVentas = res;
         this.totalIngresos = this.listVentas
           .map((item) => item.monto)

@@ -23,11 +23,11 @@
             <ion-popover  trigger="open-date-input-2" show-backdrop="false">
               <ng-template>
                 <ion-datetime
-                  #popoverDatetime2
+                  #popoverDatetime1
                   presentation="date"
-                  (ionChange)="formatDateSelectedByMoment(popoverDatetime2.value)"
-                  (ionChange)="fechaSeleccionada = getVentasByDate(popoverDatetime2.value)"
-                  (ionChange)="fechaSeleccionadaGastos = getGastosByDate(popoverDatetime2.value)"
+                  (ionChange)="formatDateSelectedByMoment(popoverDatetime1.value)"
+                  (ionChange)="fechaSeleccionada = getVentasByDate(popoverDatetime1.value)"
+                  (ionChange)="fechaSeleccionadaGastos = getGastosByDate(popoverDatetime1.value)"
                 ></ion-datetime>
               </ng-template>
             </ion-popover>

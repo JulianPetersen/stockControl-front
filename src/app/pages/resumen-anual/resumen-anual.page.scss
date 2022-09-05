@@ -115,6 +115,23 @@ ion-content{
             }
         }
        
+        .productosVendidos{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            ion-card{
+                width: 80%;
+                height: 110px;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                img{
+                    width: 100px;
+                }
+            }
+        }
        
         .ResumenDia{
             width: 100%;

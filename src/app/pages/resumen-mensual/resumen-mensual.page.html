@@ -56,14 +56,15 @@
            </ion-card>
            <div  class="Caja">
              <ion-card  *ngFor="let venta of listVentas">
-               <p>{{venta.producto.name}}</p>
-               <p class="textoVenta">$ {{venta.monto}}</p>
-               <ion-button fill="clear"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
+              <p>{{venta.producto.name}}</p>
+              <p class="textoVenta">$ {{venta.monto}}</p>
+              <p>{{venta.fecha}}</p>
+              
              </ion-card>  
              <ion-card  *ngFor="let gasto of listGastos">
                <p>{{gasto.concepto}}</p>
                <p class="textoGasto">-$ {{gasto.monto}}</p>
-               <ion-button fill="clear"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
+               <p>{{gasto.fecha}}</p>
              </ion-card>  
            </div>
            

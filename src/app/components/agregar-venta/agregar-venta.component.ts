@@ -84,7 +84,6 @@ export class AgregarVentaComponent implements OnInit {
     if(this.validateData()){
       this.caja.agregarVenta(nuevaVenta)
       .subscribe(res => {
-       
        this.modalController.dismiss();
       })
     }

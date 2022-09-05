@@ -7,6 +7,7 @@ import { Products } from 'src/app/models/products';
 import { Ventas } from 'src/app/models/ventas';
 import { CajaService } from 'src/app/services/caja.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-resumen-anual',
@@ -25,18 +26,21 @@ export class ResumenAnualPage implements OnInit {
   listGastos:Gastos[];
   totalGastos;
   totalVentas;
+  totalProductsoVendidos;
 
   listaProductsoVendidos;
   constructor(public router:Router,
               public caja:CajaService,
               private loadingCtrl: LoadingController,
-              public global:GlobalService) { }
+              public global:GlobalService,
+              public productos:ProductosService) { }
 
   ngOnInit() {
     let year = this.month.getFullYear()
     this.formatedYear = year
     this.getVentasByYear();
     this.getGastosByYear();
+    this.getProductosVendidos();
   }
 
   
@@ -72,7 +76,7 @@ export class ResumenAnualPage implements OnInit {
         this.totalVentas = this.listVentas
         .map((item) => item.monto)
         .reduce((prev, curr) => prev + curr, 0);
-      })
+        })
   }
 
   async getGastosByYear(){
@@ -84,6 +88,14 @@ export class ResumenAnualPage implements OnInit {
         .map((item) => item.monto)
         .reduce((prev, curr) => prev + curr, 0);
         
+      })
+  }
+
+  getProductosVendidos(){
+    this.productos.getProductoVendidoByYear(this.formatedYear)
+      .subscribe(res => {
+        this.totalProductsoVendidos = res;
+        console.log(this.totalProductsoVendidos);
       })
   }
 }

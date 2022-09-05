@@ -21,9 +21,9 @@
           <ion-popover  trigger="open-date-input-1" show-backdrop="false">
             <ng-template>
               <ion-datetime
-                #popoverDatetime2
+                #popoverDatetime3
                 presentation="date"
-                (ionChange)="formatDateSelectedByMoment(popoverDatetime2.value)"
+                (ionChange)="formatDateSelectedByMoment(popoverDatetime3.value)"
               ></ion-datetime>
             </ng-template>
           </ion-popover>
@@ -42,6 +42,19 @@
                  <p>${{totalGastos}}</p>
                </div>
            </ion-card>
+         </div>
+         <h1>Resumen anual</h1>
+         <div class="productosVendidos">
+          <ion-card *ngFor="let prod of totalProductsoVendidos">
+            <div>
+              <img src="{{prod.producto.imgUrl}}" alt="">
+            </div>
+            <div>
+              <p>{{prod.producto.name}}</p>
+              <p>Cantidad vendido: {{prod.cantVentas}}</p>
+              <p></p>   
+            </div>
+          </ion-card>
          </div>
          
            

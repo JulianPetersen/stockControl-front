@@ -100,5 +100,4 @@ export class CajaService {
     return this.http.get(`${this.global.URL}/gastos/getByYear/${year}`, {headers:headers})
   }
 
-
 }

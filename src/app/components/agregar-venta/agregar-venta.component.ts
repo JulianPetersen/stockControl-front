@@ -113,4 +113,18 @@ export class AgregarVentaComponent implements OnInit {
 
      return await modal.present();
   }
+
+  obtenerFecha(data){
+    let fechaSelect = data.split('-')
+    let year = fechaSelect[0];
+    let mont = fechaSelect[1];
+    let daySelected = fechaSelect[2].split('T')
+    let day = daySelected[0]
+    console.log(`${year}-${mont}-${day}`)
+
+    this.fechaFormateada = `${day}-${mont}-${year}`
+    this.monthFormated = `${mont}-${year}`
+    this.yearFormated = `${year}`
+   
+  }
 }

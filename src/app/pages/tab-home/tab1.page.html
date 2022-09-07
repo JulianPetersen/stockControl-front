@@ -1,78 +1,88 @@
-
-<ion-content >
-  
-   <div class="cabecera">
-       <div class="titulos">
-           <p>Daiana Colorista</p>
-           <p>Dueño</p>
-       </div>
-       <div class="segment">
-           <ion-button (click)="mostrarContenidoDiario()">Diario</ion-button>
-           <ion-button (click)="mostrarContenidoMensual()">Mensual</ion-button>
-           <ion-button (click)="mostrarContenidoAnual()">Anual</ion-button>
-       </div>
-   </div>
-   <div class="contenido">
-       <div class="contenidoDiario"> 
-           <div class="calendario">
-            <p> {{formatedDay}}</p>
-            <p> {{formatedMoth}}</p>
-            <ion-button  fill="clear" id="open-date-input-2">
-              <ion-icon icon="calendar"></ion-icon>
-            </ion-button>
-            <ion-popover  trigger="open-date-input-2" show-backdrop="false">
-              <ng-template>
-                <ion-datetime
-                  #popoverDatetime1
-                  presentation="date"
-                  (ionChange)="formatDateSelectedByMoment(popoverDatetime1.value)"
-                  (ionChange)="fechaSeleccionada = getVentasByDate(popoverDatetime1.value)"
-                  (ionChange)="fechaSeleccionadaGastos = getGastosByDate(popoverDatetime1.value)"
-                ></ion-datetime>
-              </ng-template>
-            </ion-popover>
+<ion-content>
+  <div class="cabecera">
+    <div class="titulos">
+      <p>Daiana Colorista</p>
+      <p>Dueño</p>
+    </div>
+    <div class="segment">
+      <ion-button (click)="mostrarContenidoDiario()">Diario</ion-button>
+      <ion-button (click)="mostrarContenidoMensual()">Mensual</ion-button>
+      <ion-button (click)="mostrarContenidoAnual()">Anual</ion-button>
+    </div>
+  </div>
+  <div class="contenido">
+    <div class="contenidoDiario">
+      <div class="calendario">
+        <p>{{formatedDay}}</p>
+        <p>{{formatedMoth}}</p>
+        <ion-button fill="clear" id="open-date-input-2">
+          <ion-icon icon="calendar"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="open-date-input-2" show-backdrop="false">
+          <ng-template>
+            <ion-datetime
+              #popoverDatetime1
+              presentation="date"
+              (ionChange)="formatDateSelectedByMoment(popoverDatetime1.value)"
+              (ionChange)="fechaSeleccionada = getVentasByDate(popoverDatetime1.value)"
+              (ionChange)="fechaSeleccionadaGastos = getGastosByDate(popoverDatetime1.value)"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </div>
+      <div class="balance">
+        <ion-card>
+          <div class="total">
+            <p>Resumen del dia</p>
+            <p>${{this.totalIngresos - this.totalGastos}}</p>
           </div>
-          <div class="balance">
-            <ion-card>
-                <div class="total">
-                  <p>Resumen del dia</p>
-                  <p>${{this.totalIngresos - this.totalGastos}}</p>
-                </div>
-                <div class="resumen">
-                  <p class="ventas">Total ventas</p>
-                  <p>${{this.totalIngresos}}</p>
-                  <p class="gastos">Total gastos</p>
-                  <p>${{this.totalGastos}}</p>
-                </div>
-            </ion-card>
+          <div class="resumen">
+            <p class="ventas">Total ventas</p>
+            <p>${{this.totalIngresos}}</p>
+            <p class="gastos">Total gastos</p>
+            <p>${{this.totalGastos}}</p>
           </div>
-          <div class="ResumenDia">
-            <ion-card (click)="mostrarInfoDia()" [ngClass]="{'gray':selectedDay == true}">
-              <div class="dia">
-                <p> {{formatedDay}}</p>
-                <p> {{formatedMoth}}</p>
-                <p> {{anioActual}}</p>
-              </div>
-              <div class="totaldia">
-              </div>
-            </ion-card>
-            <div *ngIf="selectedDay==true" class="Caja">
-              <ion-card *ngFor="let venta of listVentas">
-                <p>{{venta.producto.name}}</p>
-                <p class="textoVenta">$ {{venta.monto}}</p>
-                <ion-button fill="clear" (click)="deleteVenta(venta._id)"><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
-              </ion-card>  
-              <ion-card  *ngFor="let gasto of listgastos">
-                <p>{{gasto.concepto}}</p>
-                <p class="textoGasto">-$ {{gasto.monto}}</p>
-                <ion-button fill="clear" (click)="deleteGasto(gasto._id)" ><ion-icon class="icon" color="danger" name="trash-sharp"></ion-icon></ion-button>
-              </ion-card>  
-            </div>
-            
+        </ion-card>
+      </div>
+      <div class="ResumenDia">
+        <ion-card
+          (click)="mostrarInfoDia()"
+          [ngClass]="{'gray':selectedDay == true}"
+        >
+          <div class="dia">
+            <p>{{formatedDay}}</p>
+            <p>{{formatedMoth}}</p>
+            <p>{{anioActual}}</p>
           </div>
-       </div>
-      
-   </div>
+          <div class="totaldia"></div>
+        </ion-card>
+        <div *ngIf="selectedDay==true" class="Caja">
+          <ion-card *ngFor="let venta of listVentas">
+            <p>{{venta.producto.name}}</p>
+            <p class="textoVenta">$ {{venta.monto}}</p>
+            <ion-button fill="clear" (click)="deleteVenta(venta._id)"
+              ><ion-icon
+                class="icon"
+                color="danger"
+                name="trash-sharp"
+              ></ion-icon
+            ></ion-button>
+          </ion-card>
+          <ion-card *ngFor="let gasto of listgastos">
+            <p>{{gasto.concepto}}</p>
+            <p class="textoGasto">-$ {{gasto.monto}}</p>
+            <ion-button fill="clear" (click)="deleteGasto(gasto._id)"
+              ><ion-icon
+                class="icon"
+                color="danger"
+                name="trash-sharp"
+              ></ion-icon
+            ></ion-button>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer>

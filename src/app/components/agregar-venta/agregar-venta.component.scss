@@ -88,3 +88,23 @@ ion-footer{
         text-align: center;
     }
 }
+
+.calendario{
+    margin-top:30px;
+    border-radius: 50px;
+    width: 80%;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    ion-icon{
+        padding: 10px;
+        color: #298295;
+        font-size: 30px;
+    }
+    p{
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}

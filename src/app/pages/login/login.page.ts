@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
       .subscribe((res:loginResponse) => {
         console.log(res)
         localStorage.setItem('token', res.token)
+        localStorage.setItem('usuario', JSON.stringify(res.userFound) ) 
         this.router.navigate(['/home'])
       },
       err=>{

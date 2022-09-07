@@ -29,6 +29,7 @@ export class ResumenAnualPage implements OnInit {
   totalProductsoVendidos;
 
   listaProductsoVendidos;
+
   constructor(public router:Router,
               public caja:CajaService,
               private loadingCtrl: LoadingController,
@@ -65,6 +66,7 @@ export class ResumenAnualPage implements OnInit {
     let mes = this.formatedMoth[1];
     let dia = fecha[2].split('T');
     this.formatedDay = dia[0];
+    this.getProductosVendidos()
    }
 
    

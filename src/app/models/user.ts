@@ -8,5 +8,6 @@ export interface User {
 
 export interface loginResponse{
     token:string
-    userFound:string
+    firstTime:boolean
+
 }

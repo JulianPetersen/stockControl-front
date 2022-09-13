@@ -27,12 +27,20 @@ const routes: Routes = [
   },
   {
     path: 'resumen-mensual',
-    loadChildren: () => import('./pages/resumen-mensual/resumen-mensual.module').then( m => m.ResumenMensualPageModule)
+    loadChildren: () => import('./pages/resumen-mensual/resumen-mensual.module').then( m => m.ResumenMensualPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'resumen-anual',
-    loadChildren: () => import('./pages/resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule)
+    loadChildren: () => import('./pages/resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule),
+    canActivate:[AuthGuard]
   },
+  {
+    path: 'inicializacion',
+    loadChildren: () => import('./pages/inicializacion/inicializacion.module').then( m => m.InicializacionPageModule),
+    canActivate:[AuthGuard]
+  },
+
   
  
 ];

@@ -29,10 +29,13 @@ export class LoginPage implements OnInit {
     if(this.validateInputs()){
       this.auth.login(this.usuario)
       .subscribe((res:loginResponse) => {
-        console.log(res)
+        console.log(res.firstTime)
         localStorage.setItem('token', res.token)
-        localStorage.setItem('usuario', JSON.stringify(res.userFound) ) 
-        this.router.navigate(['/home'])
+        if(res.firstTime == false){
+          this.router.navigate(['/home'])
+        }else{
+          this.router.navigate(['/inicializacion'])
+        }
       },
       err=>{
         this.global.presentAlert("Error al intentar loguearse", err.error.message)

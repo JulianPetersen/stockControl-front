@@ -28,7 +28,7 @@ export class AgregarProductosPage implements OnInit {
   listPorducts:Products[];
 
   getProducts(){
-    this.products.getProducts()
+    this.products.getProducts(localStorage.getItem('userId'))
       .subscribe((res:Products[]) => {
         this.listPorducts = res
         

@@ -30,6 +30,7 @@ export class ProducteditComponent implements OnInit {
   categoryProduct:CategoriesProduct[] = [];
   newCategory:CategoriesProduct = {
     name:'',
+    userId:localStorage.getItem('userId')
   }
   categorieSelected:string="sin categoria";
 
@@ -45,6 +46,7 @@ export class ProducteditComponent implements OnInit {
     category:this.categorieSelected,
     price:0,
     stock:0,
+    userId:localStorage.getItem('userId')
   }
 
   cerrarModal(){
@@ -52,7 +54,7 @@ export class ProducteditComponent implements OnInit {
   }
 
   getCategoriesProduct(){
-    this.categoriesProduct.getCategories()
+    this.categoriesProduct.getCategories(localStorage.getItem('userId'))
       .subscribe( (res:CategoriesProduct[]) => {
      
          this.categoryProduct = res;

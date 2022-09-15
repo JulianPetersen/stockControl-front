@@ -157,7 +157,7 @@ export class Tab1Page {
     this.formatearFechaObtainedVentas(fechaSeleccionada);
     this.global.showLoading('cargando')
     this.caja
-      .obtenerVentaByFecha(this.fechaSeleccionada)
+      .obtenerVentaByFecha(this.fechaSeleccionada,localStorage.getItem('userId'))
       .subscribe((res: responseVenta[]) => {
         setTimeout(() => {
           this.loadingCtrl.dismiss();
@@ -183,7 +183,7 @@ export class Tab1Page {
     this.fechaSeleccionadaGastos = `${dia}-${month}-${year}`;
     this.formatearFechaObtainedGastos(fechaSeleccionada);
     this.caja
-      .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+      .obtenerGastosByFecha(this.fechaSeleccionadaGastos,localStorage.getItem('userId'))
       .subscribe((res: Gastos[]) => {
         this.listgastos = res;
         this.totalGastos = this.listgastos
@@ -220,7 +220,7 @@ export class Tab1Page {
     });
     modal.onDidDismiss().then((data) => {
       this.caja
-        .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+        .obtenerGastosByFecha(this.fechaSeleccionadaGastos,localStorage.getItem('userId'))
         .subscribe((res: Gastos[]) => {
           this.listgastos = res;
           this.totalGastos = this.listgastos
@@ -228,7 +228,7 @@ export class Tab1Page {
             .reduce((prev, curr) => prev + curr, 0);
         });
       this.caja
-        .obtenerVentaByFecha(this.fechaSeleccionada)
+        .obtenerVentaByFecha(this.fechaSeleccionada, localStorage.getItem('userId'))
         .subscribe((res: responseVenta[]) => {
           console.log(this.fechaSeleccionada);
           this.listVentas = res;
@@ -246,7 +246,7 @@ export class Tab1Page {
     });
     modal.onDidDismiss().then((data) => {
       this.caja
-        .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+        .obtenerGastosByFecha(this.fechaSeleccionadaGastos,localStorage.getItem('userId'))
         .subscribe((res: Gastos[]) => {
           this.listgastos = res;
           this.totalGastos = this.listgastos
@@ -254,7 +254,7 @@ export class Tab1Page {
             .reduce((prev, curr) => prev + curr, 0);
         });
       this.caja
-        .obtenerVentaByFecha(this.fechaSeleccionada)
+        .obtenerVentaByFecha(this.fechaSeleccionada, localStorage.getItem('userId'))
         .subscribe((res: responseVenta[]) => {
           console.log(this.fechaSeleccionada);
           this.listVentas = res;
@@ -271,7 +271,7 @@ export class Tab1Page {
     this.caja.deleteVenta(idVenta)
       .subscribe(res => {
         this.caja
-        .obtenerVentaByFecha(this.fechaSeleccionada)
+        .obtenerVentaByFecha(this.fechaSeleccionada, localStorage.getItem('userId'))
         .subscribe((res: responseVenta[]) => {
           console.log(this.fechaSeleccionada);
           this.listVentas = res;
@@ -287,7 +287,7 @@ export class Tab1Page {
     this.caja.deleteGasto(idGasto)
       .subscribe(res => {
         this.caja
-        .obtenerGastosByFecha(this.fechaSeleccionadaGastos)
+        .obtenerGastosByFecha(this.fechaSeleccionadaGastos,localStorage.getItem('userId'))
         .subscribe((res: Gastos[]) => {
           this.listgastos = res;
           this.totalGastos = this.listgastos

@@ -33,6 +33,7 @@ export class AgregarProductoModalComponent implements OnInit {
   categoryProduct:CategoriesProduct[] = [];
   newCategory:CategoriesProduct = {
     name:'',
+    userId:localStorage.getItem('userId')
   }
   categorieSelected:string="sin categoria";
 
@@ -41,13 +42,14 @@ export class AgregarProductoModalComponent implements OnInit {
     category:this.categorieSelected,
     price:0,
     stock:0,
+    userId:localStorage.getItem('userId')
     
   }
 
 
   addProduct(){
     if(this.verificarData()){
-      this.productService.postProduct(this.newProduct.name,this.newProduct.category,this.newProduct.price, this.newProduct.stock,this.newProduct.image)
+      this.productService.postProduct(this.newProduct.name,this.newProduct.category,this.newProduct.price, this.newProduct.stock,this.newProduct.image,this.newProduct.userId)
       .subscribe(res => {
         
         this.modalController.dismiss();
@@ -79,7 +81,7 @@ export class AgregarProductoModalComponent implements OnInit {
 
 
   getCategoriesProduct(){
-    this.categoriesProduct.getCategories()
+    this.categoriesProduct.getCategories(localStorage.getItem('userId'))
       .subscribe( (res:CategoriesProduct[]) => {
         
          this.categoryProduct = res;

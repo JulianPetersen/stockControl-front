@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
       .subscribe((res:loginResponse) => {
         console.log(res.firstTime)
         localStorage.setItem('token', res.token)
+        localStorage.setItem('userId', res.userId)
         if(res.firstTime == false){
           this.router.navigate(['/home'])
         }else{

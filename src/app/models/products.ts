@@ -14,5 +14,6 @@ export interface PostProduct {
     category:string;
     price:number;
     image?:File;
-    stock:number
+    stock:number;
+    userId:string;
 }

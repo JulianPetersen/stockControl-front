@@ -16,7 +16,8 @@ export class AddCategoryProductComponent implements OnInit {
 
   categories:CategoriesProduct[]=[];
 	newCategorie:CategoriesProduct = {
-    name:""
+    name:"",
+    userId:localStorage.getItem('userId')
   }
 
   categorieSelect:string;
@@ -45,7 +46,7 @@ export class AddCategoryProductComponent implements OnInit {
   }
 
   getCategories(){
-    this.category.getCategories()
+    this.category.getCategories(localStorage.getItem('userId'))
       .subscribe((res:CategoriesProduct[]) => {
         this.categories = res;
       })

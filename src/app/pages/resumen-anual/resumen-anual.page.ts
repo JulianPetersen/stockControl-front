@@ -72,7 +72,7 @@ export class ResumenAnualPage implements OnInit {
    
   getVentasByYear(){
     
-    this.caja.getVentasByYear(this.formatedYear)
+    this.caja.getVentasByYear(this.formatedYear, localStorage.getItem('userId'))
       .subscribe( (res:Ventas[]) => {
         this.listVentas = res;
         this.totalVentas = this.listVentas
@@ -83,7 +83,7 @@ export class ResumenAnualPage implements OnInit {
 
   async getGastosByYear(){
     
-    this.caja.getGastosByYear(this.formatedYear)
+    this.caja.getGastosByYear(this.formatedYear, localStorage.getItem('userId'))
       .subscribe((res:Gastos[]) => {
         this.listGastos = res
         this.totalGastos = this.listGastos
@@ -94,7 +94,7 @@ export class ResumenAnualPage implements OnInit {
   }
 
   getProductosVendidos(){
-    this.productos.getProductoVendidoByYear(this.formatedYear)
+    this.productos.getProductoVendidoByYear(this.formatedYear, localStorage.getItem('userId'))
       .subscribe(res => {
         this.totalProductsoVendidos = res;
         console.log(this.totalProductsoVendidos);

@@ -7,7 +7,8 @@ export interface Ventas {
     metodoPago:string,
     fecha:string
     month:string
-    year:string
+    year:string,
+    userId:string
 }
 
 export interface responseVenta {

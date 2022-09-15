@@ -3,11 +3,13 @@ export interface User {
     email:string,
     password:string
     roles:string;
+   
 }
 
 
 export interface loginResponse{
     token:string
     firstTime:boolean
+    userId:string
 
 }

@@ -11,16 +11,16 @@ export class ProductosService {
   constructor(public global:GlobalService, public http:HttpClient) { }
 
 
-  getProducts(){
+  getProducts(userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
     const fd = new FormData();
-    return this.http.get<Products[]>(`${this.global.URL}/products`, {headers:headers})
+    return this.http.get<Products[]>(`${this.global.URL}/products/${userId}`, {headers:headers})
   }
 
 
-  postProduct(name:string, category:string, price, stock, image:File){
+  postProduct(name:string, category:string, price, stock, image:File,userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
@@ -31,6 +31,7 @@ export class ProductosService {
     fd.append('price', price)
     fd.append('stock', stock)
     fd.append('image', image)
+    fd.append('userId', userId)
     return this.http.post(`${this.global.URL}/products`,fd,{headers:headers})
   }
 
@@ -51,20 +52,20 @@ export class ProductosService {
     return this.http.put(`${this.global.URL}/products/${productId}`,product,{headers:headers})
   }
 
-  getProductoVendido(){
+  getProductoVendido(userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
  
-    return this.http.get(`${this.global.URL}/productosvendidos`,{headers:headers})
+    return this.http.get(`${this.global.URL}/productosvendidos/${userId}`,{headers:headers})
   }
 
-  getProductoVendidoByYear(year:string){
+  getProductoVendidoByYear(year:string, userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
  
-    return this.http.get(`${this.global.URL}/productosvendidos/${year}`,{headers:headers})
+    return this.http.get(`${this.global.URL}/productosvendidos/${year}/${userId}`,{headers:headers})
   }
   
 }

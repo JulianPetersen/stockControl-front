@@ -26,34 +26,34 @@ export class CajaService {
     return this.http.post(`${this.global.URL}/gastos`, gasto, {headers:headers})
   }
 
-  obtenerVentas(){
+  obtenerVentas(userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get<responseVenta[]>(`${this.global.URL}/ventas`, {headers:headers})
+    return this.http.get<responseVenta[]>(`${this.global.URL}/ventas/${userId}`, {headers:headers})
   }
 
-  obtenerVentaByFecha(fecha:string){
+  obtenerVentaByFecha(fecha:string, userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get(`${this.global.URL}/ventas/getByFecha/${fecha}`, {headers:headers})
+    return this.http.get(`${this.global.URL}/ventas/getByFecha/${fecha}/${userId}`, {headers:headers})
   }
 
 
-  obtenerGastosByFecha(fecha:string){
+  obtenerGastosByFecha(fecha:string,userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get(`${this.global.URL}/gastos/getByFecha/${fecha}`, {headers:headers})
+    return this.http.get(`${this.global.URL}/gastos/getByFecha/${fecha}/${userId}`, {headers:headers})
   }
 
   
-  obtenerGastos(){
+  obtenerGastos(userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get<Gastos[]>(`${this.global.URL}/gastos`, {headers:headers})
+    return this.http.get<Gastos[]>(`${this.global.URL}/gastos/${userId}`, {headers:headers})
   }
   
   deleteVenta(id){
@@ -71,33 +71,33 @@ export class CajaService {
   }
 
 
-  obtenerVentaByMonth(month:string){
+  obtenerVentaByMonth(month:string, userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get(`${this.global.URL}/ventas/getByMonth/${month}`, {headers:headers})
+    return this.http.get(`${this.global.URL}/ventas/getByMonth/${month}/${userId}`, {headers:headers})
   }
 
-  obtenerGastosByMonth(month:string){
+  obtenerGastosByMonth(month:string, userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get(`${this.global.URL}/gastos/getByMonth/${month}`, {headers:headers})
+    return this.http.get(`${this.global.URL}/gastos/getByMonth/${month}/${userId}`, {headers:headers})
   }
 
 
-  getVentasByYear(year:string){
+  getVentasByYear(year:string, userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get(`${this.global.URL}/ventas/getByYear/${year}`, {headers:headers})
+    return this.http.get(`${this.global.URL}/ventas/getByYear/${year}/${userId}`, {headers:headers})
   }
 
-  getGastosByYear(year:string){
+  getGastosByYear(year:string, userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get(`${this.global.URL}/gastos/getByYear/${year}`, {headers:headers})
+    return this.http.get(`${this.global.URL}/gastos/getByYear/${year}/${userId}`, {headers:headers})
   }
 
 }

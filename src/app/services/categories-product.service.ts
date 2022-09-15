@@ -11,11 +11,11 @@ export class CategoriesProductService {
   constructor(private http:HttpClient, public global:GlobalService) { }
 
 
-  getCategories(){
+  getCategories(userId:string){
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get<CategoriesProduct[]>(`${this.global.URL}/categoryProduct`, {headers:headers})
+    return this.http.get<CategoriesProduct[]>(`${this.global.URL}/categoryProduct/${userId}`, {headers:headers})
   }
 
   createCategory(categories:CategoriesProduct){

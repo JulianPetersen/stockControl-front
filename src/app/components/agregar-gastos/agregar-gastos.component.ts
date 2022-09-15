@@ -32,7 +32,8 @@ newGasto:Gastos = {
   metodoPago:"",
   fecha:"",
   month:"",
-  year:""
+  year:"",
+  userId:""
 }
 
 fechaFormateada;
@@ -70,7 +71,8 @@ yearFormated;
       metodoPago:this.newGasto.metodoPago,
       fecha:this.fechaFormateada,
       month:this.monthFormated,
-      year:this.yearFormated
+      year:this.yearFormated,
+      userId:localStorage.getItem('userId')
     }
     if(this.validateData()){
       this.caja.agregarGasto(gasto)

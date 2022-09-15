@@ -42,7 +42,8 @@ export class AgregarVentaComponent implements OnInit {
     metodoPago:"",
     fecha:"",
     month:"",
-    year:""
+    year:"",
+    userId:""
 
   }
   
@@ -78,7 +79,8 @@ export class AgregarVentaComponent implements OnInit {
       metodoPago:this.metodoPago,
       fecha:this.fechaFormateada,
       month:this.monthFormated,
-      year:this.yearFormated
+      year:this.yearFormated,
+      userId:localStorage.getItem('userId')
     }
 
     if(this.validateData()){

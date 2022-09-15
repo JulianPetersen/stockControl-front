@@ -138,7 +138,7 @@ export class ResumenMensualPage implements OnInit {
     this.formatearFechaObtainedGastos(mes);
 
     this.caja
-      .obtenerGastosByMonth(this.selectedMonth)
+      .obtenerGastosByMonth(this.selectedMonth, localStorage.getItem('userId'))
       .subscribe((res: Gastos[]) => {
         this.listGastos = res;
         this.totalGastos = this.listGastos
@@ -164,7 +164,7 @@ export class ResumenMensualPage implements OnInit {
     this.formatearFechaObtainedVentas(mes);
     this.global.showLoading('cargando')
     this.caja
-      .obtenerVentaByMonth(this.selectedMonth)
+      .obtenerVentaByMonth(this.selectedMonth,localStorage.getItem('userId'))
       .subscribe((res: responseVenta[]) => {
         setTimeout(() => {
           this.loadingCtrl.dismiss();

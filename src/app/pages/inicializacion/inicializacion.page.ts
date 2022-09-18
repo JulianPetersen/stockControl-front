@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-inicializacion',
   templateUrl: './inicializacion.page.html',

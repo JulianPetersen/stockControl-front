@@ -1,0 +1,35 @@
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+ion-content{
+    --background: rgb(228, 228, 228);
+    .header{
+        margin:0;
+        background-color: #298295;
+        display: flex;
+        flex-direction: column;
+        height:400px;
+        justify-content: center;
+        border-bottom-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        .logo{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            img{
+                width: 80px;
+            }     
+        }
+        h1{
+            color: white;
+            text-align: center;
+        }
+        p{
+            color: white;
+            text-align: center;
+        }
+    } 
+
+
+}

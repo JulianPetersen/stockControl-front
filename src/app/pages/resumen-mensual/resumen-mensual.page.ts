@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { Gastos } from 'src/app/models/gastos';
+import { User } from 'src/app/models/user';
 import { responseVenta } from 'src/app/models/ventas';
+import { AuthService } from 'src/app/services/auth.service';
 import { CajaService } from 'src/app/services/caja.service';
 import { GlobalService } from 'src/app/services/global.service';
 
@@ -16,7 +18,8 @@ export class ResumenMensualPage implements OnInit {
   constructor(public router:Router, 
               public caja:CajaService,
               public global:GlobalService,
-              private loadingCtrl: LoadingController) { }
+              private loadingCtrl: LoadingController,
+              private auth:AuthService) { }
   
   selectedMonth;
   selectedMonthByGastos;
@@ -36,16 +39,24 @@ export class ResumenMensualPage implements OnInit {
   totalIngresos: number;
   totalGastos:number
 
+  nombreSalon:string;
+
 
   ngOnInit() {
    let mes = this.month.getMonth()
    this.obtenerMesFormateado(mes);
    this.obtenerVentasPorMes(this.selectedMonth);
    this.obtenerGastosPorMes(this.selectedMonthByGastos)
-   
+   this.getUserInfo()
   }
 
-  
+  getUserInfo(){
+    this.auth.getUserById(localStorage.getItem('userId'))
+      .subscribe((res:User) => {
+        this.nombreSalon = res.nombreSalon;
+      })
+  }
+
   obtenerAño() {
     this.anioActual = this.day.getFullYear();
   }

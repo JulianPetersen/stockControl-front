@@ -3,33 +3,69 @@
     font-family: 'Poppins', sans-serif;
 }
 ion-content{
-    --background: rgb(228, 228, 228);
-    .header{
-        margin:0;
-        background-color: #298295;
+    .imgW{
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        height:400px;
         justify-content: center;
-        border-bottom-right-radius: 50px;
-        border-bottom-left-radius: 50px;
-        .logo{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            img{
-                width: 80px;
-            }     
+        align-items: center;
+        img{
+            width: 300px;
+            margin-top: 100px;
         }
-        h1{
-            color: white;
+    }
+
+    .texto{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .textoText{
+            width: 80%;
+            color: gray;
             text-align: center;
         }
-        p{
-            color: white;
-            text-align: center;
+    }
+
+    .title{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        .titleText{
+            width: 80%;
+            
+            h3{
+                text-align: center;
+                font-weight: bold;
+                color: #298295;
+                
+            }
         }
-    } 
+       
+    }
+    .buttons{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+        ion-button{
+            width: 80%;
+            --border-radius: 90px;
+        }
+    }
+
+  .inputNombre{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    ion-item{
+        width: 80%;
+    }
+  }
+
+} 
 
 
-}
+
+
+
+

@@ -23,9 +23,12 @@ export class AgregarProductosPage implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+ 
   }
 
   listPorducts:Products[];
+  productName:string;
+
 
   getProducts(){
     this.products.getProducts(localStorage.getItem('userId'))
@@ -96,4 +99,18 @@ export class AgregarProductosPage implements OnInit {
     return await modal.present();
   }
 
+
+  buscarProductoPorNombre(){
+    if(this.productName == ""){
+      this.getProducts();
+    }else{
+      this.products.getProductByName(localStorage.getItem('userId'), this.productName)
+      .subscribe((res:Products[]) => {
+        console.log(res)
+        this.listPorducts = res
+      })
+    }
+    
+
+  }
 }

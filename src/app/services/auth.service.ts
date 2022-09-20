@@ -31,7 +31,15 @@ export class AuthService {
 
   logOut(){
     localStorage.removeItem('token');
-    localStorage.removeItem('idUser')
-    this.router.navigate(['/home'])
+    localStorage.removeItem('userId')
+    this.router.navigate(['/login'])
   }
+
+  updateUser(userId:string, user){
+   return this.http.put(`${this.global.URL}/auth/updateuser/${userId}`, user)
+  }
+
+getUserById(userId){
+  return this.http.get(`${this.global.URL}/auth/getuser/${userId}`)
+}
 }

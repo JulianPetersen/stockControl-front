@@ -24,6 +24,7 @@ export class SelectProductComponent implements OnInit {
   }
 
   listPorducts: Products[];
+  productName:string;
 
   getProducts() {
     this.products.getProducts(localStorage.getItem('userId')).subscribe((res: Products[]) => {
@@ -89,4 +90,18 @@ export class SelectProductComponent implements OnInit {
   closeModal() {
     this.modalController.dismiss();
   }
+
+
+  buscarProductoPorNombre(){
+    if(this.productName == ""){
+      this.getProducts();
+    }else{
+      this.products.getProductByName(localStorage.getItem('userId'), this.productName)
+      .subscribe((res:Products[]) => {
+        console.log(res)
+        this.listPorducts = res
+      })
+    }
+}
+
 }

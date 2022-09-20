@@ -7,6 +7,8 @@ import { Gastos } from 'src/app/models/gastos';
 import { CajaService } from 'src/app/services/caja.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-tab1',
@@ -34,13 +36,15 @@ export class Tab1Page {
 
   totalIngresos: number;
   totalGastos: number;
+  nombreSalon:string;
 
   constructor(
     public global: GlobalService,
     public modalController: ModalController,
     public caja: CajaService,
     public router:Router,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    public auth:AuthService
   ) {}
 
   ngOnInit() {
@@ -50,6 +54,17 @@ export class Tab1Page {
     this.obtenerAño();
     this.getVentasByDate(this.fechaSeleccionada);
     this.getGastosByDate(this.fechaSeleccionadaGastos);
+    this.getuserById()
+  }
+
+  getuserById(){
+    
+    this.auth.getUserById(localStorage.getItem('userId'))
+      .subscribe((res:User) => {
+        
+        this.nombreSalon = res.nombreSalon
+        console.log(res)
+      })
   }
 
   //#region manipulacion de las pantallas de home

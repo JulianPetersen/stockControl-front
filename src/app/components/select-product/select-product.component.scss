@@ -38,4 +38,13 @@ ion-content{
     .icon{
         font-size: 30px;
     }
+    .buscarProd{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        ion-item{
+            width: 80%;
+            
+        }
+    }
 }

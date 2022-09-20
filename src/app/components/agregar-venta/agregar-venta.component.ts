@@ -99,6 +99,9 @@ export class AgregarVentaComponent implements OnInit {
     }else if(this.metodoPago == ""){
       this.global.presentAlert('Faltan datos', 'Seleccione un metodo de pago')
       return false
+    }else if (this.productSelected.stock == 0){
+      this.global.presentAlert('No hay stock', 'No tienes stock de este producto, asegurate de que tu stock se encuentre actualizado')
+      return false
     }
     return true
   }
@@ -129,4 +132,6 @@ export class AgregarVentaComponent implements OnInit {
     this.yearFormated = `${year}`
    
   }
+
+ 
 }

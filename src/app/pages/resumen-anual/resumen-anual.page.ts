@@ -4,7 +4,9 @@ import { LoadingController } from '@ionic/angular';
 import { of } from 'rxjs';
 import { Gastos } from 'src/app/models/gastos';
 import { Products } from 'src/app/models/products';
+import { User } from 'src/app/models/user';
 import { Ventas } from 'src/app/models/ventas';
+import { AuthService } from 'src/app/services/auth.service';
 import { CajaService } from 'src/app/services/caja.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { ProductosService } from 'src/app/services/productos.service';
@@ -30,11 +32,14 @@ export class ResumenAnualPage implements OnInit {
 
   listaProductsoVendidos;
 
+  nombreSalon:string
+  
   constructor(public router:Router,
               public caja:CajaService,
               private loadingCtrl: LoadingController,
               public global:GlobalService,
-              public productos:ProductosService) { }
+              public productos:ProductosService,
+              private auth:AuthService) { }
 
   ngOnInit() {
     let year = this.month.getFullYear()
@@ -42,9 +47,15 @@ export class ResumenAnualPage implements OnInit {
     this.getVentasByYear();
     this.getGastosByYear();
     this.getProductosVendidos();
+    this.getUserInfo();
   }
 
-  
+  getUserInfo(){
+    this.auth.getUserById(localStorage.getItem('userId'))
+      .subscribe((res:User) => {
+        this.nombreSalon = res.nombreSalon;
+      })
+  }
 
   mostrarContenidoDiario() {
     this.router.navigateByUrl('/home')

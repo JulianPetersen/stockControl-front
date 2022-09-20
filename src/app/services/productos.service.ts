@@ -67,5 +67,12 @@ export class ProductosService {
  
     return this.http.get(`${this.global.URL}/productosvendidos/${year}/${userId}`,{headers:headers})
   }
+
+  getProductByName(userId:string, name:string){
+    let headers = new HttpHeaders({
+      "x-access-token": localStorage.getItem('token')
+    })
+    return this.http.get(`${this.global.URL}/products/getbyname/${userId}/${name}`, {headers:headers})
+  }
   
 }

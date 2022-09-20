@@ -26,6 +26,7 @@ export class LoginPage implements OnInit {
 
 
   login(){
+    this.ngOnInit()
     if(this.validateInputs()){
       this.auth.login(this.usuario)
       .subscribe((res:loginResponse) => {

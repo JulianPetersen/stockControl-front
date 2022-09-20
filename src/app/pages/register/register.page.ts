@@ -32,7 +32,7 @@ export class RegisterPage implements OnInit {
       .subscribe((res:loginResponse) => {
         console.log(res)
         localStorage.setItem('token', res.token)
-        this.router.navigate(['/home'])
+        this.router.navigate(['/login'])
       },
       err=>{
         this.global.presentAlert("Error al intentar loguearse", err.error.message)

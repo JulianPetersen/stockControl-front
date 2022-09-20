@@ -1,10 +1,61 @@
-
 <ion-content>
-  <div class="header">
-    <div class="logo">
-      <img src="/assets/logo.png" alt="">
+  <div class="slide" *ngIf="slideUno">
+    <div class="imgW">
+      <img src="/assets/welcome1.png" alt="" />
     </div>
-    <h1>Bienvenidos a Cut</h1>
-    <p>Tu sistema de gestion para tu salón</p>
+    <div class="title">
+      <div class="titleText">
+        <h3>Bienvenidos a Frisor, El sistema de gestion Para tu Salón</h3>
+      </div>
+    </div>
+    <div class="texto">
+      <div class="textoText">
+        <p>Con Frizor el dia en tu salón va a ser mucho mas organizado. vas a poder controlar todo desde la comodidad de tu Telefono</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <ion-button (click)="gotToStepTwo()">Siguiente</ion-button>
+    </div>
+  </div>
+
+
+  <div class="slide" *ngIf="slideDos">
+    <div class="imgW">
+      <img src="/assets/welcome2.png" alt="" />
+    </div>
+    <div class="title">
+      <div class="titleText">
+        <h3>Con Frisor vas a poder administrar tus dias</h3>
+      </div>
+    </div>
+    <div class="texto">
+      <div class="textoText">
+        <p>Frisor te brinda un módulo completo para la administracion de venta de productos, en caso de que tu salon cuente con este, podras llevar la cuentas y el control de stock de los mismos</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <ion-button (click)="gotToStepThree()">Siguiente</ion-button>
+    </div>
+  </div>
+
+
+  <div class="slide" *ngIf="slideTres">
+    <div class="imgW">
+      <img src="/assets/user.png" alt="" />
+    </div>
+    <div class="title">
+      <div class="titleText">
+        <h3>Vamos a darle nombre a tu salón. ¿como se llama tu salon?</h3>
+      </div>
+    </div>
+    <div class="inputNombre">
+      <ion-item>
+        <ion-label position="floating">Nombre de salon</ion-label>
+        <ion-input [(ngModel)]="nombreSalon"></ion-input>
+      </ion-item>
+    </div>
+    <div class="buttons">
+      <ion-button (click)="saveSalonName()">Siguiente</ion-button>
+    </div>
   </div>
 </ion-content>

@@ -9,6 +9,13 @@
 
 <ion-content>
 
+  <div class="buscarProd">
+    <ion-item>
+      <ion-label position="floating">Buscar</ion-label>
+      <ion-input [(ngModel)]="productName" (ionChange)="buscarProductoPorNombre()"></ion-input>
+    </ion-item>
+  </div>
+
   <ion-card *ngFor="let prod of listPorducts" (click)="ProductSelected(prod)">
     <ion-card-title></ion-card-title>
     <ion-card-content>
@@ -16,7 +23,7 @@
         <img src="{{prod.imgUrl}}" >
       </div>
       <div>
-
+        <ion-card-subtitle>$ {{prod.name}}</ion-card-subtitle>
         <ion-card-subtitle>$ {{prod.price}}</ion-card-subtitle>
         <ion-card-subtitle>stock: {{prod.stock}}</ion-card-subtitle>
       </div>

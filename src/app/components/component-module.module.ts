@@ -12,6 +12,8 @@ import { AddCategoryProductComponent } from './add-category-product/add-category
 import { ProducteditComponent } from './productedit/productedit.component';
 import { SelectProductComponent } from './select-product/select-product.component';
 import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.component';
+import { AgregarTurnoComponent } from './agregar-turno/agregar-turno.component';
+import { EditTurnosComponent } from './edit-turnos/edit-turnos.component';
 
 
 
@@ -26,6 +28,8 @@ import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.componen
     ProducteditComponent,
     SelectProductComponent,
     AgregarGastosComponent,
+    AgregarTurnoComponent,
+    EditTurnosComponent
     
    
   ],
@@ -44,6 +48,8 @@ import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.componen
     ProducteditComponent,
     SelectProductComponent,
     AgregarGastosComponent,
+    AgregarTurnoComponent,
+    EditTurnosComponent
     
 
   ]

@@ -1,0 +1,60 @@
+<ion-content>
+  <div class="cabecera">
+    <div class="titulos">
+      <p>{{nombreSalon}}</p>
+      <p>Seccion Turnos</p>
+    </div>
+    <div class="segment">
+      <ion-button>Trunos</ion-button>
+      <ion-button>Completados</ion-button>
+      
+    </div>
+  </div>
+  <div class="contenido">
+    <div class="contenidoDiario">
+      <div class="calendario">
+        <p>{{formatedDay}}</p>
+        <p>{{formatedMoth}}</p>
+        <ion-button fill="clear" id="open-date-input-9">
+          <ion-icon icon="calendar"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="open-date-input-9" show-backdrop="false" >
+          <ng-template>
+            <ion-datetime 
+            #popoverDatetime1 
+            presentation="date"
+            (ionChange)="SelectDate(popoverDatetime1.value)"></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </div>
+      <div class="seccionTurnos">
+        <ion-card *ngFor="let t of listaTurnos">
+          <div class="contentCard">
+              <div class="infoClientes">
+                <div class="fechaHora">
+                  <p>Dia: {{t.fechaTurno}}</p>
+                  <p>Hora: {{t.horarioTurno}}</p>
+                </div>
+                <div class="infoCliente">
+                  <p>Cliente: {{t.nombreCliente + "  " +t.apellidoCliente}}</p>
+                </div>
+              </div>
+                <ion-buttons class="buttonsUpDelete">
+                  <ion-button (click)="deleteTurno(t._id)"><ion-icon  class="iconoEliminar" name="trash"></ion-icon></ion-button>
+                  <ion-button (click)="updateTurno(t._id,t.nombreCliente,t.apellidoCliente,t.fechaTurno,t.horarioTurno,t.userId)"><ion-icon class="iconoEditar" name="create"></ion-icon></ion-button>
+                </ion-buttons>         
+          </div>
+          <ion-buttons class="buttonCompletar">
+            <ion-button color="primary" (click)="completarTurno(t._id, t.nombreCliente,t.apellidoCliente,t.fechaTurno,t.horarioTurno,t.userId)">Completar Turno</ion-button>
+          </ion-buttons>
+        </ion-card>
+      </div>
+    </div>
+    
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="agregarTurno()" >Agendat Turno</ion-button>
+  
+</ion-footer>

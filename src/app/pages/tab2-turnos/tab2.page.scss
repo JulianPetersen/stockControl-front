@@ -1,0 +1,147 @@
+ion-content{
+    --background: rgb(228, 228, 228);
+    position: relative;
+            
+    .cabecera{
+        width: 100%;
+        height: 250px;
+        background-color: #298295;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .titulos{
+            margin-top: 20px;
+            p{
+                font-family: 'Poppins', sans-serif;
+                color: white;
+                text-align: center;
+                margin:0;
+            }
+        }
+        .segment{
+            width: 75%;
+            height: 50px;
+            background-color: white;
+            margin-top:15px;
+            border-radius: 50px;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            ion-button{
+                font-size: 12px;
+                --border-radius: 50px;
+                width: 40%;
+            }
+        }
+        
+    }
+
+    .contenido{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        background-color: rgb(228, 228, 228);
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        top:160px;
+        display: flex;
+        justify-content: center;
+        .contenidoDiario{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .calendario{
+                margin-top:30px;
+                border-radius: 50px;
+                width: 80%;
+                height: 50px;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                ion-icon{
+                    padding: 10px;
+                    color: #298295;
+                    font-size: 30px;
+                }
+                p{
+                    font-family: 'Poppins', sans-serif;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+            }
+            .seccionTurnos{
+                width: 80%;
+                margin-top: 20px;
+                ion-card{
+                    .contentCard{
+                        display: flex;
+                        .infoClientes{
+                            width: 80%;
+                            .fechaHora{
+                                display: flex;
+                                justify-content: space-around;
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                            .infoCliente{
+                                margin-left: 20px;
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                        }
+                        .buttonsUpDelete{
+                            width: 20%;
+                            display: flex;
+                            align-items: center;
+                            flex-direction: column;
+                            justify-content: space-around;
+                            .iconoEliminar{
+                                font-size: 25px;
+                                color: red;
+                            }
+                            .iconoEditar{
+                                font-size: 25px;
+                                color: gray;
+                            }
+                        }
+                    }
+
+                    .buttonCompletar{
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        ion-button{
+                            width: 80%;
+                            
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+
+        
+
+
+      
+    }
+    
+}
+
+ion-footer{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: rgb(228, 228, 228);
+}

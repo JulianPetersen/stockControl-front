@@ -1,0 +1,50 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+      <div class="titulos">
+        <ion-buttons>
+          <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+        </ion-buttons>
+          <p>Agendar Nuevo Turno</p>
+          
+      </div>
+     
+  </div>
+  <div class="contenido">
+      
+    <div class="formulario">
+      <ion-item class="input">
+        <ion-label position="fixed">Nombre</ion-label>
+        <ion-input [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="fixed">Apellido</ion-label>
+        <ion-input [(ngModel)]="apellido"></ion-input>
+      </ion-item>
+      <div class="calendario">
+        
+        <ion-button fill="clear" id="open-date-input-6">
+          <ion-icon icon="calendar"></ion-icon>
+        </ion-button>
+        <p>{{fecha}}</p>
+        <p>{{horario}}</p>
+        <ion-popover trigger="open-date-input-6" show-backdrop="false">
+          <ng-template>
+            <ion-datetime
+              #popoverDatetime6
+              presentation="date-time"
+              (ionChange)="seleccionarFecha(popoverDatetime6.value)"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </div>
+     
+    </div>
+    
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="updateTurno()">Actualizar Turno</ion-button>
+</ion-footer>

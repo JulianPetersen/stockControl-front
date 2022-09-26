@@ -82,9 +82,13 @@ export class ResumenAnualPage implements OnInit {
 
    
   getVentasByYear(){
-    
+    this.global.showLoading('cargando')
     this.caja.getVentasByYear(this.formatedYear, localStorage.getItem('userId'))
       .subscribe( (res:Ventas[]) => {
+        setTimeout(() => {
+          
+          this.loadingCtrl.dismiss()
+        }, 1000);
         this.listVentas = res;
         this.totalVentas = this.listVentas
         .map((item) => item.monto)

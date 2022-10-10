@@ -51,14 +51,26 @@ export class AgregarTurnoComponent implements OnInit {
       this.newTurno.horarioTurno = hora      
   }
 
- 
-
   createTurno(){
-    this.turno.createTurno(this.newTurno)
+    if(this.validatData()){
+      this.turno.createTurno(this.newTurno)
       .subscribe((res)=>{
-        console.log(res)
         this.cerrarModal();
       } )
+    }
   }
 
+  validatData(){
+    if(this.newTurno.nombreCliente == ""){
+      this.global.presentAlert('Error', 'debes ingresar un nombre de Cliente')
+      return false
+    }else if (this.newTurno.apellidoCliente == ""){
+      this.global.presentAlert('Error', 'debes agregar un apellido para tu cliente.')
+      return false
+    }else if(this.newTurno.fechaTurno == ""){
+        this.global.presentAlert('Error', 'Agrega una fecha')
+        return false
+    }
+    return true;
+  }
 }

@@ -25,21 +25,31 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
-  {
-    path: 'resumen-mensual',
-    loadChildren: () => import('./pages/resumen-mensual/resumen-mensual.module').then( m => m.ResumenMensualPageModule),
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'resumen-anual',
-    loadChildren: () => import('./pages/resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule),
-    canActivate:[AuthGuard]
-  },
+  // {
+  //   path: 'resumen-mensual',
+  //   loadChildren: () => import('./pages/resumen-mensual/resumen-mensual.module').then( m => m.ResumenMensualPageModule),
+  //   canActivate:[AuthGuard]
+  // },
+  // {
+  //   path: 'resumen-anual',
+  //   loadChildren: () => import('./pages/resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule),
+  //   canActivate:[AuthGuard]
+  // },
   {
     path: 'inicializacion',
     loadChildren: () => import('./pages/inicializacion/inicializacion.module').then( m => m.InicializacionPageModule),
     canActivate:[AuthGuard]
   },
+  // {
+  //   path: 'balance-turnos',
+  //   loadChildren: () => import('./pages/balance-turnos/balance-turnos.module').then( m => m.BalanceTurnosPageModule)
+  // },
+
+  // {
+  //   path: 'turnos-completo',
+  //   loadChildren: () => import('./pages/turnos-completo/turnos-completo.module').then( m => m.TurnosCompletoPageModule)
+  // },
+
 
   
  

@@ -20,7 +20,26 @@ const routes: Routes = [
       },
       {
         path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule),
+        loadChildren: () => import('../tab3-subUsers/tab3.module').then(m => m.Tab3PageModule),
+        canActivate:[AuthGuard]
+      },
+      {
+        path: 'turnos-completo',
+        loadChildren: () => import('../turnos-completo/turnos-completo.module').then( m => m.TurnosCompletoPageModule)
+      },
+
+      {
+        path: 'balance-turnos',
+        loadChildren: () => import('../balance-turnos/balance-turnos.module').then( m => m.BalanceTurnosPageModule)
+      },
+      {
+        path: 'resumen-mensual',
+        loadChildren: () => import('../resumen-mensual/resumen-mensual.module').then( m => m.ResumenMensualPageModule),
+        canActivate:[AuthGuard]
+      },
+      {
+        path: 'resumen-anual',
+        loadChildren: () => import('../resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule),
         canActivate:[AuthGuard]
       },
 

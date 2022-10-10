@@ -56,5 +56,12 @@ dismissModal() {
 
     loading.present();
   }
+
+
+  async cerrarLoading(){
+      setTimeout(() => {
+        this.loadingCtrl.dismiss()
+      }, 2000);
+  }
 }
 

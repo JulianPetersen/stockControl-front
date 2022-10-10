@@ -3,17 +3,15 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
-
   <div class="cabecera">
     <div class="titulos">
       <p>{{nombreSalon}}</p>
-      <p>Caja de productos</p>
+      <p>Balance de peluqueria</p>
     </div>
     <div class="segment">
-      <ion-button (click)="mostrarContenidoDiario()">Diario</ion-button>
-      <ion-button (click)="mostrarContenidoMensual()">Mensual</ion-button>
-      <ion-button (click)="mostrarContenidoAnual()">Anual</ion-button>
+      <ion-button (click)="goToTurnos()">Trunos</ion-button>
+      <ion-button (click)="goToTurnosCompletos()">Completos</ion-button>
+      <ion-button (click)="goToBalanceTurnos()">Balance</ion-button>
     </div>
   </div>
   <div class="contenido">
@@ -21,17 +19,17 @@
       <div class="calendario">
         <p>{{formatedDay}}</p>
         <p>{{formatedMoth}}</p>
-        <ion-button fill="clear" id="open-date-input-4">
+        <ion-button fill="clear" id="open-date-input-1">
           <ion-icon icon="calendar"></ion-icon>
         </ion-button>
-        <ion-popover trigger="open-date-input-4" show-backdrop="false">
+        <ion-popover trigger="open-date-input-1" show-backdrop="false">
           <ng-template>
             <ion-datetime
-              #popoverDatetime4
+              #popoverDatetimeBalance
               presentation="date"
-              (ionChange)="formatDateSelectedByMoment(popoverDatetime4.value)"
-              (ionChange)="fechaSeleccionada = getVentasByDate(popoverDatetime4.value)"
-              (ionChange)="fechaSeleccionadaGastos = getGastosByDate(popoverDatetime4.value)"
+              (ionChange)="formatDateSelectedByMoment(popoverDatetimeBalance.value)"
+              (ionChange)="fechaSeleccionada = getIngresosTurnosByDateSelect(popoverDatetimeBalance.value)"
+              (ionChange)="fechaSeleccionada = getEgresosTurnosByDateSelect(popoverDatetimeBalance.value)"
             ></ion-datetime>
           </ng-template>
         </ion-popover>
@@ -40,13 +38,13 @@
         <ion-card>
           <div class="total">
             <p>Resumen del dia</p>
-            <p>${{this.totalIngresos - this.totalGastos}}</p>
+            <p>${{totalIngresos - totalGastos}}</p>
           </div>
           <div class="resumen">
             <p class="ventas">Total ventas</p>
-            <p>${{this.totalIngresos}}</p>
+            <p>${{totalIngresos}}</p>
             <p class="gastos">Total gastos</p>
-            <p>${{this.totalGastos}}</p>
+            <p>${{totalGastos}}</p>
           </div>
         </ion-card>
       </div>
@@ -62,26 +60,32 @@
           </div>
           <div class="totaldia"></div>
         </ion-card>
-        <div *ngIf="selectedDay==true" class="Caja">
-          <ion-card *ngFor="let venta of listVentas">
-            <p>{{venta.producto.name}}</p>
-            <p class="textoVenta">$ {{venta.monto}}</p>
-            <ion-button fill="clear" (click)="deleteVenta(venta._id)"
+        <div *ngFor="let t of listTurnosCompletos" class="Caja">
+          <ion-card >
+            <p>{{t.nombreCliente + ' ' +t.apellidoCliente}}</p>
+            <p class="textoVenta">$ {{t.monto}}</p>
+            <ion-button fill="clear" 
+              (click)="deleteIngreso(t._id)"
               ><ion-icon
                 class="icon"
                 color="danger"
                 name="trash-sharp"
+                
               ></ion-icon
             ></ion-button>
           </ion-card>
-          <ion-card *ngFor="let gasto of listgastos">
-            <p>{{gasto.concepto}}</p>
-            <p class="textoGasto">-$ {{gasto.monto}}</p>
-            <ion-button fill="clear" (click)="deleteGasto(gasto._id)"
+        </div>
+        <div *ngFor="let t of listGastos" class="Caja">
+          <ion-card >
+            <p>{{t.concepto}}</p>
+            <p class="textoGasto">$ {{t.monto}}</p>
+            <ion-button fill="clear" 
+              (click)="deleteEgreso(t._id)"
               ><ion-icon
                 class="icon"
                 color="danger"
                 name="trash-sharp"
+                
               ></ion-icon
             ></ion-button>
           </ion-card>
@@ -90,8 +94,7 @@
     </div>
   </div>
 </ion-content>
-
 <ion-footer>
-  <ion-button (click)="nuevaVenta()">Nueva venta </ion-button>
-  <ion-button (click)="nuevoGasto()">Nuevo gasto</ion-button>
+  <ion-button (click)="agregarEgreso()">Agregar un egreso</ion-button>
+ 
 </ion-footer>

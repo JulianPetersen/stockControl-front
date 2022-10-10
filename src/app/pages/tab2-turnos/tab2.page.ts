@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { AgregarTurnoComponent } from 'src/app/components/agregar-turno/agregar-turno.component';
 import { EditTurnosComponent } from 'src/app/components/edit-turnos/edit-turnos.component';
@@ -7,7 +8,7 @@ import { TurnosCompletados } from 'src/app/models/turnos-completados';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { TurnosCompletadosService } from 'src/app/services/turnos-completados.service';
+import { TurnosCompletadosService } from 'src/app/services/turnos-completos.service';
 import { TurnosService } from 'src/app/services/turnos.service';
 
 @Component({
@@ -33,16 +34,28 @@ export class Tab2Page {
               private alert:AlertController,
               private global:GlobalService,
               private loader:LoadingController,
-              private turnoCompletado:TurnosCompletadosService) {}
+              private turnoCompletado:TurnosCompletadosService,
+              private router:Router) {}
   
   ngOnInit(){
     this.getuserById();
-
     this.formatearFecha(this.today)
     this.formatedToday(this.today)
     this.getTurnosByDate(this.today);
 
 
+  }
+
+  goToTurnos(){
+    this.router.navigateByUrl('tabs/tab2')
+  }
+
+  goToTurnosCompletos(){
+    this.router.navigateByUrl('tabs/turnos-completo')
+  }
+  
+  goToBalanceTurnos(){
+    this.router.navigateByUrl('tabs/balance-turnos')
   }
 
  formatedToday(date){
@@ -235,12 +248,13 @@ export class Tab2Page {
           text: 'OK',
           role: 'confirm',
           handler: (alertData) => {
+            
             let turnoCompletado:TurnosCompletados = {
               nombreCliente:nombreCliente,
               apellidoCliente: apellidoCliente,
               fechaTurno: fechaTurno,
               horarioTurno:horarioTurno,
-              realizadoPor:alertData.realizadoPor,
+              realizadoPor:alertData.persona,
               userId:userId,
               monto:alertData.precio,
               observaciones:alertData.observaciones
@@ -252,8 +266,8 @@ export class Tab2Page {
             this.turno.deleteTurno(id)
               .subscribe(res=>{
                 console.log('turno Eliminado')
+                this.getTurnosByDate(this.today);
               })
-              this.getTurnosByDate(this.dateSelect);
           },
         },
         {
@@ -264,7 +278,11 @@ export class Tab2Page {
     });
 
     await alert.present();
+    
   }
 
-   
+  doRefresh(event){
+    this.ngOnInit();
+    event.target.complete();
+}
 }

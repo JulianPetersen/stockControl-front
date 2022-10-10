@@ -1,20 +1,19 @@
 <ion-content>
 
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-
   <div class="cabecera">
     <div class="titulos">
       <p>{{nombreSalon}}</p>
-      <p>Seccion Turnos</p>
+      <p>Seccion Turnos Completos</p>
     </div>
     <div class="segment">
       <ion-button (click)="goToTurnos()">Trunos</ion-button>
       <ion-button (click)="goToTurnosCompletos()">Completos</ion-button>
-      <ion-button (click)=" goToBalanceTurnos()">Balance</ion-button>
+      <ion-button (click)="goToBalanceTurnos()">Balance</ion-button>
+      
     </div>
   </div>
   <div class="contenido">
@@ -22,20 +21,20 @@
       <div class="calendario">
         <p>{{formatedDay}}</p>
         <p>{{formatedMoth}}</p>
-        <ion-button fill="clear" id="open-date-input-5">
+        <ion-button fill="clear" id="open-date-input-6">
           <ion-icon icon="calendar"></ion-icon>
         </ion-button>
-        <ion-popover trigger="open-date-input-5" show-backdrop="false" >
+        <ion-popover trigger="open-date-input-6" show-backdrop="false" >
           <ng-template>
             <ion-datetime 
-            #popoverDatetime5 
+            #popoverDatetime6 
             presentation="date"
-            (ionChange)="SelectDate(popoverDatetime5.value)"></ion-datetime>
+            (ionChange)="SelectDate(popoverDatetime6.value)"></ion-datetime>
           </ng-template>
         </ion-popover>
       </div>
       <div class="seccionTurnos">
-        <ion-card *ngFor="let t of listaTurnos">
+        <ion-card *ngFor="let t of listaTurnosCompletos">
           <div class="contentCard">
               <div class="infoClientes">
                 <div class="fechaHora">
@@ -48,20 +47,15 @@
               </div>
                 <ion-buttons class="buttonsUpDelete">
                   <ion-button (click)="deleteTurno(t._id)"><ion-icon  class="iconoEliminar" name="trash"></ion-icon></ion-button>
-                  <ion-button (click)="updateTurno(t._id,t.nombreCliente,t.apellidoCliente,t.fechaTurno,t.horarioTurno,t.userId)"><ion-icon class="iconoEditar" name="create"></ion-icon></ion-button>
                 </ion-buttons>         
           </div>
           <ion-buttons class="buttonCompletar">
-            <ion-button color="primary" (click)="completarTurno(t._id, t.nombreCliente,t.apellidoCliente,t.fechaTurno,t.horarioTurno,t.userId)">Completar Turno</ion-button>
+            <ion-button color="primary" (click)="masDetalles(t._id,t.nombreCliente,t.apellidoCliente,t.fechaTurno,t.horarioTurno,t.realizadoPor,t.userId,t.monto,t.observaciones)">Mas Detalles</ion-button>
           </ion-buttons>
         </ion-card>
       </div>
     </div>
-    
   </div>
 </ion-content>
 
-<ion-footer>
-  <ion-button (click)="agregarTurno()" >Agendar Turno</ion-button>
-  
-</ion-footer>
+

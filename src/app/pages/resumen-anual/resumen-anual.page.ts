@@ -62,11 +62,11 @@ export class ResumenAnualPage implements OnInit {
    }
  
    mostrarContenidoMensual() {
-     this.router.navigateByUrl('/resumen-mensual')
+     this.router.navigateByUrl('tabs/resumen-mensual')
    }
  
    mostrarContenidoAnual() {
-    this.router.navigateByUrl('/resumen-anual')
+    this.router.navigateByUrl('tabs/resumen-anual')
    }
 
    
@@ -115,4 +115,10 @@ export class ResumenAnualPage implements OnInit {
         console.log(this.totalProductsoVendidos);
       })
   }
+
+  
+  doRefresh(event){
+    this.ngOnInit();
+    event.target.complete();
+}
 }

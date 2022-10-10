@@ -1,0 +1,60 @@
+ion-content{
+    --background: rgb(228, 228, 228);
+    position: relative;
+            
+    .cabecera{
+        width: 100%;
+        height: 250px;
+        background-color: #298295;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .titulos{
+            margin-top: 20px;
+            p{
+                font-family: 'Poppins', sans-serif;
+                color: white;
+                text-align: center;
+                margin:0;
+            }
+        }
+        
+    }
+
+    .contenido{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        background-color: rgb(228, 228, 228);
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        top:160px;
+        display: flex;
+        justify-content: center;
+        .contenidoUsuarios{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .listUsuarios{
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+      
+    }
+    
+}
+
+ion-footer{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: rgb(228, 228, 228);
+}

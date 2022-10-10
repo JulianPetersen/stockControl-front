@@ -24,7 +24,7 @@ export class TurnosCompletadosService {
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     })
-    return this.http.get<TurnosCompletados[]>(`${this.global.URL}/turnosCompleto/getTurnobydate/${userId}/${date}`, {headers:headers})
+    return this.http.get<TurnosCompletados[]>(`${this.global.URL}/ingresoTurno/getTurnobydate/${userId}/${date}`, {headers:headers})
   }
 
   createTurno(turno:TurnosCompletados){
@@ -45,6 +45,6 @@ export class TurnosCompletadosService {
     let headers = new HttpHeaders({
       "x-access-token": localStorage.getItem('token')
     });
-    return this.http.delete(`${this.global.URL}/turnosCompleto/${idTurno}`, {headers:headers})
+    return this.http.delete(`${this.global.URL}/ingresoTurno/${idTurno}`, {headers:headers})
   }
 }

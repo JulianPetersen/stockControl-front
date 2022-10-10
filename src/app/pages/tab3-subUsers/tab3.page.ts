@@ -9,4 +9,11 @@ export class Tab3Page {
 
   constructor() {}
 
+
+  ngOnInit(){}
+
+  doRefresh(event){
+    this.ngOnInit();
+    event.target.complete();
+}
 }

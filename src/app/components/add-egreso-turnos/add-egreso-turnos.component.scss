@@ -1,0 +1,110 @@
+ion-content{
+    --background: rgb(228, 228, 228);
+    position: relative;
+            
+    .cabecera{
+        width: 100%;
+        height: 180px;
+        background-color: #298295;
+        position: absolute;
+        .titulos{
+            margin-top:10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            p{
+                font-family: 'Poppins', sans-serif;
+                color: white;
+                text-align: center;
+                margin:0;
+            }
+            ion-buttons{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                margin-right: 20px;
+                color: white;
+            }
+        }
+        
+        
+    }
+
+    .contenido{
+        position: absolute;
+        width: 100%;
+        background-color: rgb(228, 228, 228);
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        top:120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .imgProduct{
+            max-height: 300px;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            img{
+                max-height: 200px;
+            }
+        }
+    }
+
+    .formulario{
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .input{
+            width: 80%;
+            margin-bottom: 10px;
+            border-radius: 30px;
+        }
+        .btnAgregarProducto{
+            width: 80%;
+            height: 50px;
+            font-size: 15px;
+            margin-bottom: 10px;
+            --border-radius: 30px;
+            
+            ion-icon{
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+.calendario{
+    margin-top:30px;
+    border-radius: 50px;
+    width: 80%;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    ion-icon{
+        padding: 10px;
+        color: #298295;
+        font-size: 30px;
+    }
+    p{
+        font-family: 'Poppins', sans-serif;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+
+ion-footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    ion-button{
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -148,7 +148,7 @@ export class TurnosCompletoPage implements OnInit {
       .subscribe((res:TurnosCompletados[]) => {
         setTimeout(() => {
           this.loader.dismiss();
-        }, 1000);
+        }, 2000);
         console.log(res)
           this.listaTurnosCompletos = res;
       })

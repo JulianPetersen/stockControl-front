@@ -37,6 +37,9 @@ export class BalanceTurnosPage implements OnInit {
   totalIngresos;
   totalGastos
   listTurnosCompletos:TurnosCompletados[];
+  nombreUsuario:string;
+  apellidoUsuario:string;
+
 
   constructor(public router:Router,
               public auth:AuthService,
@@ -73,12 +76,16 @@ export class BalanceTurnosPage implements OnInit {
     this.today = `${dia}-${month}-${year}`
   }
 
-  getuserById(){
-    this.auth.getUserById(localStorage.getItem('userId'))
-      .subscribe((res:User) => {
-        this.nombreSalon = res.nombreSalon
-      })
-  }
+  
+ getuserById(){ 
+  this.auth.getUserById(JSON.parse(localStorage.getItem('infoUser')).id)
+    .subscribe((res:User) => {
+      this.nombreSalon = res.nombreSalon;
+      this.nombreUsuario = res.nombre;
+      this.apellidoUsuario = res.apellido;
+      console.log(res)
+    })
+}
 
   goToTurnos(){
     this.router.navigateByUrl('tabs/tab2')

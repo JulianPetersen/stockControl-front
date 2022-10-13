@@ -30,14 +30,33 @@ export class LoginPage implements OnInit {
     if(this.validateInputs()){
       this.auth.login(this.usuario)
       .subscribe((res:loginResponse) => {
-        console.log(res.firstTime)
-        localStorage.setItem('token', res.token)
-        localStorage.setItem('userId', res.userId)
-        if(res.firstTime == false){
+        console.log(res)
+        if(res.isModerator == true){
+          let infoUser = {
+            id:res.userId,
+            nombreSalon:res.nombreSalon,
+            email:res.email
+          }
+          localStorage.setItem('infoUser', JSON.stringify(infoUser))
+          localStorage.setItem('token', res.token)
+          localStorage.setItem('userId', res.idAdmin)
           this.router.navigate(['/home'])
-        }else{
-          this.router.navigate(['/inicializacion'])
+        }else if(res.isModerator == false){
+          let infoUser = {
+            id:res.userId,
+            nombreSalon:res.nombreSalon,
+            email:res.email
+          }
+          localStorage.setItem('infoUser', JSON.stringify(infoUser))
+          localStorage.setItem('token', res.token)
+          localStorage.setItem('userId', res.userId)
+          if(res.firstTime == false){
+            this.router.navigate(['/home'])
+          }else{
+            this.router.navigate(['/inicializacion'])
+          }
         }
+       
       },
       err=>{
         this.global.presentAlert("Error al intentar loguearse", err.error.message)

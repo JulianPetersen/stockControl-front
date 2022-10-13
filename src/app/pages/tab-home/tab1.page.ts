@@ -37,6 +37,8 @@ export class Tab1Page {
   totalIngresos: number;
   totalGastos: number;
   nombreSalon:string;
+  nombreUsuario:string
+  apellidoUsuario:string;
 
   constructor(
     public global: GlobalService,
@@ -48,7 +50,6 @@ export class Tab1Page {
   ) {}
 
   ngOnInit() {
-  
     let mes = this.month.getMonth();
     this.obtenerMesFormateado(mes);
     this.obtenerDia();
@@ -58,10 +59,13 @@ export class Tab1Page {
     this.getuserById()
   }
 
+
   getuserById(){ 
-    this.auth.getUserById(localStorage.getItem('userId'))
+    this.auth.getUserById(JSON.parse(localStorage.getItem('infoUser')).id)
       .subscribe((res:User) => {
-        this.nombreSalon = res.nombreSalon
+        this.nombreSalon = res.nombreSalon;
+        this.nombreUsuario = res.nombre;
+        this.apellidoUsuario = res.apellido;
         console.log(res)
       })
   }
@@ -95,7 +99,7 @@ export class Tab1Page {
     this.formatedYear = fecha[0];
     this.formatedMoth = fecha[1];
     let mes = this.formatedMoth;
-    console.log(mes)
+
     this.obtenerMesFormateado(parseInt(mes) - 1);
     let dia = fecha[2].split('T');
     this.formatedDay = dia[0];
@@ -183,6 +187,8 @@ export class Tab1Page {
   }
 
   getGastosByDate(fechaSeleccionada) {
+
+    
     let day = new Date();
     let dia = day.getDate().toString();
     let month = (day.getMonth() + 1).toString();
@@ -198,7 +204,6 @@ export class Tab1Page {
     this.caja
       .obtenerGastosByFecha(this.fechaSeleccionadaGastos,localStorage.getItem('userId'))
       .subscribe((res: Gastos[]) => {
-        
         this.listgastos = res;
         this.totalGastos = this.listgastos
           .map((item) => item.monto)
@@ -244,7 +249,7 @@ export class Tab1Page {
       this.caja
         .obtenerVentaByFecha(this.fechaSeleccionada, localStorage.getItem('userId'))
         .subscribe((res: responseVenta[]) => {
-          console.log(this.fechaSeleccionada);
+
           this.listVentas = res;
           this.totalIngresos = this.listVentas
             .map((item) => item.monto)
@@ -270,7 +275,7 @@ export class Tab1Page {
       this.caja
         .obtenerVentaByFecha(this.fechaSeleccionada, localStorage.getItem('userId'))
         .subscribe((res: responseVenta[]) => {
-          console.log(this.fechaSeleccionada);
+
           this.listVentas = res;
           this.totalIngresos = this.listVentas
             .map((item) => item.monto)
@@ -281,13 +286,13 @@ export class Tab1Page {
   }
 
   deleteVenta(idVenta){
-    console.log(idVenta)
+
     this.caja.deleteVenta(idVenta)
       .subscribe(res => {
         this.caja
         .obtenerVentaByFecha(this.fechaSeleccionada, localStorage.getItem('userId'))
         .subscribe((res: responseVenta[]) => {
-          console.log(this.fechaSeleccionada);
+
           this.listVentas = res;
           this.totalIngresos = this.listVentas
             .map((item) => item.monto)
@@ -312,8 +317,9 @@ export class Tab1Page {
     
   }
 
+  
   doRefresh(event){
-      this.ngOnInit();
-      event.target.complete();
-  }
+    this.ngOnInit();
+    event.target.complete();
+}
 }

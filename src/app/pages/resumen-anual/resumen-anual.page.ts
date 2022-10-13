@@ -33,6 +33,8 @@ export class ResumenAnualPage implements OnInit {
   listaProductsoVendidos;
 
   nombreSalon:string
+  nombreUsuario:string;
+  apellidoUsuario:string
   
   constructor(public router:Router,
               public caja:CajaService,
@@ -47,13 +49,16 @@ export class ResumenAnualPage implements OnInit {
     this.getVentasByYear();
     this.getGastosByYear();
     this.getProductosVendidos();
-    this.getUserInfo();
+    this.getuserById();
   }
 
-  getUserInfo(){
-    this.auth.getUserById(localStorage.getItem('userId'))
+  getuserById(){ 
+    this.auth.getUserById(JSON.parse(localStorage.getItem('infoUser')).id)
       .subscribe((res:User) => {
         this.nombreSalon = res.nombreSalon;
+        this.nombreUsuario = res.nombre;
+        this.apellidoUsuario = res.apellido;
+        console.log(res)
       })
   }
 

@@ -40,20 +40,24 @@ export class ResumenMensualPage implements OnInit {
   totalGastos:number
 
   nombreSalon:string;
-
-
+  nombreUsuario:string
+  apellidoUsuario:string
+  
   ngOnInit() {
    let mes = this.month.getMonth()
    this.obtenerMesFormateado(mes);
    this.obtenerVentasPorMes(this.selectedMonth);
    this.obtenerGastosPorMes(this.selectedMonthByGastos)
-   this.getUserInfo()
+   this.getuserById()
   }
 
-  getUserInfo(){
-    this.auth.getUserById(localStorage.getItem('userId'))
+  getuserById(){ 
+    this.auth.getUserById(JSON.parse(localStorage.getItem('infoUser')).id)
       .subscribe((res:User) => {
         this.nombreSalon = res.nombreSalon;
+        this.nombreUsuario = res.nombre;
+        this.apellidoUsuario = res.apellido;
+        console.log(res)
       })
   }
 

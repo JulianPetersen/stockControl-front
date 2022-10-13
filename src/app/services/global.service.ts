@@ -14,6 +14,9 @@ export class GlobalService {
 
   URL="http://localhost:4000/api"
 
+  
+  dataUser = JSON.parse(localStorage.getItem('user')) 
+
 
 async presentModal(component:any, data:any, clase:string) {
     const modal = await this.modalController.create({

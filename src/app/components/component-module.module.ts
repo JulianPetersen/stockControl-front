@@ -15,6 +15,7 @@ import { AgregarGastosComponent } from './agregar-gastos/agregar-gastos.componen
 import { AgregarTurnoComponent } from './agregar-turno/agregar-turno.component';
 import { EditTurnosComponent } from './edit-turnos/edit-turnos.component';
 import { AddEgresoTurnosComponent } from './add-egreso-turnos/add-egreso-turnos.component';
+import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
 
 
 
@@ -31,7 +32,8 @@ import { AddEgresoTurnosComponent } from './add-egreso-turnos/add-egreso-turnos.
     AgregarGastosComponent,
     AgregarTurnoComponent,
     EditTurnosComponent,
-    AddEgresoTurnosComponent
+    AddEgresoTurnosComponent,
+    AddUsuarioComponent
     
    
   ],
@@ -52,7 +54,8 @@ import { AddEgresoTurnosComponent } from './add-egreso-turnos/add-egreso-turnos.
     AgregarGastosComponent,
     AgregarTurnoComponent,
     EditTurnosComponent,
-    AddEgresoTurnosComponent
+    AddEgresoTurnosComponent,
+    AddUsuarioComponent
     
 
   ]

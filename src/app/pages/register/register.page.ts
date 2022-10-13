@@ -12,6 +12,8 @@ import { GlobalService } from 'src/app/services/global.service';
 export class RegisterPage implements OnInit {
 
   usuario:User = {
+    nombre:"",
+    apellido:"",
     username:"",
     email:"",
     password:"",
@@ -42,7 +44,13 @@ export class RegisterPage implements OnInit {
   }
 
   validateInputs(){
-    if(this.usuario.username == ""){
+    if(this.usuario.nombre == ""){
+      this.global.presentAlert('Error al intentar registrarse', 'El campo Nombre, es obligatorio')
+      return false
+    }else if(this.usuario.apellido == ""){
+      this.global.presentAlert('Error al intentar loguearse', 'El campo Apelido Es obligatorio')
+      return false
+    }else if(this.usuario.username == ""){
       this.global.presentAlert('Error al intentar registrarse', "nombre de usuario obligatorio")
       return false
     }else if(this.usuario.email ==""){

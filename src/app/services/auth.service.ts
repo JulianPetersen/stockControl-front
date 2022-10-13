@@ -16,6 +16,10 @@ export class AuthService {
     return this.http.post(`${this.global.URL}/auth/signup`, user)
   }
 
+  registerSubUser(user:User){
+    return this.http.post(`${this.global.URL}/auth/signup/singupsubuser`, user)
+  }
+
   login(user:User){
     return this.http.post(`${this.global.URL}/auth/signin`, user)
   }
@@ -32,6 +36,7 @@ export class AuthService {
   logOut(){
     localStorage.removeItem('token');
     localStorage.removeItem('userId')
+    localStorage.removeItem('infoUser')
     this.router.navigate(['/login'])
   }
 

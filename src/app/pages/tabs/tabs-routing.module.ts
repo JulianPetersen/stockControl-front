@@ -42,6 +42,11 @@ const routes: Routes = [
         loadChildren: () => import('../resumen-anual/resumen-anual.module').then( m => m.ResumenAnualPageModule),
         canActivate:[AuthGuard]
       },
+      {
+        path: 'estadisticas',
+        loadChildren: () => import('../estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+      },
+    
 
       {
         path: '',

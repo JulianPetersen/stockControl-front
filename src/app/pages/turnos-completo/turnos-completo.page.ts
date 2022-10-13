@@ -25,6 +25,8 @@ export class TurnosCompletoPage implements OnInit {
   formatedDay;
   listaTurnosCompletos:TurnosCompletados[];
 
+  apellidoUsuario:string;
+  nombreUsuario:string;
 
   constructor(private auth:AuthService,
     private modalController:ModalController,
@@ -43,12 +45,13 @@ export class TurnosCompletoPage implements OnInit {
   }
 
 
-  getuserById(){
-    this.auth.getUserById(localStorage.getItem('userId'))
+  getuserById(){ 
+    this.auth.getUserById(JSON.parse(localStorage.getItem('infoUser')).id)
       .subscribe((res:User) => {
-        
-        this.nombreSalon = res.nombreSalon
-        
+        this.nombreSalon = res.nombreSalon;
+        this.nombreUsuario = res.nombre;
+        this.apellidoUsuario = res.apellido;
+        console.log(res)
       })
   }
 

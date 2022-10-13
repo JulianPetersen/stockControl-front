@@ -41,6 +41,11 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   // {
+  //   path: 'estadisticas',
+  //   loadChildren: () => import('./pages/estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+  // },
+
+  // {
   //   path: 'balance-turnos',
   //   loadChildren: () => import('./pages/balance-turnos/balance-turnos.module').then( m => m.BalanceTurnosPageModule)
   // },

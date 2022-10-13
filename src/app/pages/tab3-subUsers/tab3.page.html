@@ -6,12 +6,35 @@
       <div class="titulos">
         <p></p>
         <p>Seccion Usuarios</p>
+        <p>{{nombreSalon}}</p>
+        <p>{{nombreUsuario + " " +apellidoUsuario}}</p>
       </div>
     </div>
     <div class="contenido">
       <div class="contenidoUsuarios">
-        <div class="listUsuarios">
+        <div class="listUsuarios" *ngIf="listSubUserEmpty">
+          <div class="contentCard">
             <p>Aún no tienes Usuarios Agregados.</p>
+            <h5>Los Usuarios agregados en esta sección, tendrán su propio usuario y contraseña para ingresar en la aplicación y podrán administrar todo el contenido.</h5>
+          </div>
+        </div>
+        <div class="listaUsuarios" *ngIf="!listSubUserEmpty" style="text-align:center ;">
+          <h5>Lista de usuarios Hábilitados a administrar la aplicación</h5>
+          <ion-card *ngFor="let l of listSubUser">
+            <div class="contentCard">
+                <div class="infoUsuarios">
+                  <div class="infoCliente">
+                    <p [ngClass]="{'userDesactive':l.userActive == false}">{{l.nombre + " " + l.apellido}}</p>
+                  </div>
+                </div>        
+            </div>
+            <ion-buttons class="buttonCompletar" *ngIf="l.userActive == true">
+              <ion-button color="primary" (click)="desactivarUsuario(l._id)">Desactivar Usuario</ion-button>
+            </ion-buttons>
+            <ion-buttons class="buttonCompletar" *ngIf="l.userActive == false">
+              <ion-button color="primary" (click)="desactivarUsuario(l._id)">Volver a Activar</ion-button>
+            </ion-buttons>
+          </ion-card>
         </div>
       </div>
       
@@ -19,7 +42,7 @@
   </ion-content>
   
   <ion-footer>
-    <ion-button>Agregar un Usuario</ion-button>
+    <ion-button (click)="agrearSubUsuario()">Agregar un Usuario</ion-button>
     
   </ion-footer>
   

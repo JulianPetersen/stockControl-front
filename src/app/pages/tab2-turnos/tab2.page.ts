@@ -25,8 +25,8 @@ export class Tab2Page {
   today=`${this.date.getDate()}-${this.date.getMonth()+1}-${this.date.getFullYear()}`
   formatedMoth;
   formatedDay;
-
-
+  nombreUsuario:string;
+  apellidoUsuario:String;
 
   constructor(private auth:AuthService,
               private turno:TurnosService,
@@ -74,13 +74,15 @@ export class Tab2Page {
  }
 
 
-  getuserById(){
-    this.auth.getUserById(localStorage.getItem('userId'))
-      .subscribe((res:User) => {
-        this.nombreSalon = res.nombreSalon
-
-      })
-  }
+ getuserById(){ 
+  this.auth.getUserById(JSON.parse(localStorage.getItem('infoUser')).id)
+    .subscribe((res:User) => {
+      this.nombreSalon = res.nombreSalon;
+      this.nombreUsuario = res.nombre;
+      this.apellidoUsuario = res.apellido;
+      console.log(res)
+    })
+}
 
   
 

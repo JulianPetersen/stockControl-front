@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+      <div class="titulos">
+        <ion-buttons>
+          <ion-button fill="clear" class="btn" (click)="cerrarModal()">X</ion-button>
+        </ion-buttons>
+          <p>Ingrese una nueva venta</p>
+      </div>
+     
+  </div>
+  <div class="contenido">
+    <div class="formRegister">
+      <ion-item>
+        <ion-input  placeholder="Nombre de Usuario" [(ngModel)]="usuario.username"></ion-input>
+        <ion-icon name="person" item-start class="text-primary"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input  placeholder="Nombre" [(ngModel)]="usuario.nombre"></ion-input>
+        <ion-icon name="person" item-start class="text-primary"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input  placeholder="Apellido" [(ngModel)]="usuario.apellido"></ion-input>
+        <ion-icon name="person" item-start class="text-primary"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Mail" [(ngModel)]="usuario.email"></ion-input>
+        <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Contraseña" type="password" [(ngModel)]="usuario.password"></ion-input>
+        <ion-icon name="key"></ion-icon>
+      </ion-item>
+      <ion-button (click)="registerUser()" >Registrar</ion-button>
+    </div>
+  
+  </div>
+</ion-content>
+
